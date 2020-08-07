@@ -40,6 +40,5 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #f6f6f6;
 }
 </style>

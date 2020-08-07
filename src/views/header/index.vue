@@ -99,6 +99,7 @@
 </template>
 
 <script>
+//import { mapState } from "vuex";
 export default {
   name: "headerMode",
   props: [""],
@@ -132,7 +133,7 @@ export default {
         }
       ],
       // 当前选中
-      active: "shouye",
+      active: this.$store.state.header.active,
       // 小屏模式下图标切换
       iconShiow: true
     };
@@ -140,7 +141,11 @@ export default {
 
   components: {},
 
-  computed: {},
+  computed: {
+    // ...mapState("header", {
+    //   active: state => state.titlePath
+    // })
+  },
 
   beforeMount() {},
 
@@ -154,7 +159,7 @@ export default {
   methods: {
     // 选择头部标签
     choose(path) {
-      this.active = path;
+      this.active = this.$store.commit("header/setActive", path);
       // 小屏时点击菜单选项下拉消失
       if (document.body.clientWidth < 650) this.iconShiow = !this.iconShiow;
     },
@@ -174,8 +179,9 @@ export default {
   position: fixed;
   top: 0;
   z-index: 9999;
-  background-color: #fff;
-  padding-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 20px;
+  //box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.1);
   .nav {
     margin: 0 auto;
     max-width: 1200px;
@@ -244,7 +250,7 @@ export default {
     .mobile_menu {
       width: 28px;
       height: 28px;
-      background-color: rgb(248, 248, 248);
+      background-color: rgba(248, 248, 248, 0.5);
       cursor: pointer;
       border-radius: 4px;
       border-width: 1px;
@@ -281,13 +287,13 @@ export default {
         width: 100%;
         height: 40px;
         .mobile_inputSearch {
-          width: 90%;
+          width: 85%;
           padding: 5px 12px;
           color: #777;
-          background-color: #fff;
+          background-color: rgba(255, 255, 255, 0.2);
           font-size: 15px;
           box-shadow: none;
-          border: 2px solid #ccc;
+          border: 2px solid rgba(204, 204, 204, 0.2);
           display: table-cell;
           // 去除选中的边框颜色
           outline: none;
@@ -296,11 +302,11 @@ export default {
           text-align: center;
           line-height: 40px;
           height: 40px;
-          width: 10%;
+          width: 15%;
           color: white;
           font-size: 14px;
           font-weight: 400;
-          background-color: #ccc;
+          background-color: rgba(204, 204, 204, 0.2);
         }
         .mobile_searchBtn:hover {
           color: #409eff;
