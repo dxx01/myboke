@@ -14,7 +14,6 @@ export default {
 #content {
   margin: 0 auto;
   max-width: 1200px;
-  min-width: 500px;
   display: flex;
   flex-direction: row;
 }

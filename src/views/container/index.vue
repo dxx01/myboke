@@ -1,10 +1,11 @@
 <template>
-  <div id="container">
+  <div id="container" :style="'padding-top:' + height + 'px'">
     <component :is="active"></component>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import shouye from "@/views/container/content/shouye.vue";
 export default {
   name: "container",
@@ -15,13 +16,17 @@ export default {
   },
   components: {
     shouye
-  }
+  },
+  created() {},
+  computed: {
+    ...mapState("header", { height: state => state.height })
+  },
+  watch: {}
 };
 </script>
 
 <style lang="scss" scoped>
 #container {
   width: 100%;
-  padding-top: 80px;
 }
 </style>

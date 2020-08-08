@@ -70,7 +70,11 @@
         </svg>
       </div>
       <!-- 小屏模式菜单列表(<650px) -->
-      <div class="mobile_dropdown" v-if="!iconShiow">
+      <div
+        id="mobile_dropdown_height"
+        class="mobile_dropdown"
+        :style="'visibility:' + (iconShiow ? 'hidden' : 'visible')"
+      >
         <!-- 搜索 -->
         <div class="mobile_search">
           <input
@@ -99,7 +103,7 @@
 </template>
 
 <script>
-//import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "headerMode",
   props: [""],
@@ -133,7 +137,7 @@ export default {
         }
       ],
       // 当前选中
-      active: this.$store.state.header.active,
+      //active: this.$store.state.header.active,
       // 小屏模式下图标切换
       iconShiow: true
     };
@@ -142,9 +146,9 @@ export default {
   components: {},
 
   computed: {
-    // ...mapState("header", {
-    //   active: state => state.titlePath
-    // })
+    ...mapState("header", {
+      active: state => state.active
+    })
   },
 
   beforeMount() {},
@@ -152,23 +156,45 @@ export default {
   mounted() {
     // 每次缩小到小屏都重置iconShiow
     window.onresize = () => {
-      if (document.body.clientWidth < 650) this.iconShiow = true;
+      if (document.body.clientWidth < 650) {
+        this.iconShiow = true;
+      } else {
+        this.defaultHeight();
+      }
     };
   },
 
   methods: {
+    ...mapMutations("header", {
+      setHeight: "setHeight",
+      defaultHeight: "defaultHeight"
+    }),
     // 选择头部标签
     choose(path) {
-      this.active = this.$store.commit("header/setActive", path);
+      this.setActive(path);
       // 小屏时点击菜单选项下拉消失
       if (document.body.clientWidth < 650) this.iconShiow = !this.iconShiow;
     },
     // 小屏模式下切换展开图标
     changeIcon(val) {
       this.iconShiow = val;
+      this.disHeight(val);
+    },
+    // 获取小屏模式下列表高度并处理
+    disHeight(val) {
+      if (document.body.clientWidth < 650) {
+        let height = 0;
+        if (val === false) {
+          height += document.getElementById("mobile_dropdown_height")
+            .offsetHeight;
+        } else {
+          height -= document.getElementById("mobile_dropdown_height")
+            .offsetHeight;
+        }
+        this.setHeight(height);
+      }
     }
   },
-
   watch: {}
 };
 </script>
