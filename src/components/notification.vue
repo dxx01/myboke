@@ -1,22 +1,24 @@
 <template>
-  <div id="notification" v-show="this.$store.state.active">
+  <div id="notification" v-show="active">
     <div class="moveBox">
       <div id="notification_move">
-        <span id="notification_content">{{ contents[active] }}</span>
+        <span id="notification_content">{{ contents[active_content] }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { TimelineMax } from "gsap";
+//import { TweenLite, TimelineLite } from "gsap";
+import { gsap, ScrollToPlugin, Draggable, MotionPathPlugin } from "gsap/all";
+import { mapState } from "vuex";
 export default {
   name: "notification",
   props: [""],
   data() {
     return {
       contents: this.$store.state.defaultContent.contents,
-      active: 0,
+      active_content: 0,
       x: 0,
       // gsap
       t1: null,
@@ -26,7 +28,11 @@ export default {
   created() {},
   components: {},
 
-  computed: {},
+  computed: {
+    ...mapState({
+      active: "active"
+    })
+  },
 
   beforeMount() {},
 
@@ -37,34 +43,44 @@ export default {
   methods: {
     //gsap动画方法
     initGsap() {
-      this.t1 = new TimelineMax();
+      gsap.registerPlugin(ScrollToPlugin, Draggable, MotionPathPlugin);
+      this.t1 = gsap.timeline();
       this.t1.to("#notification_move", this.time, {
         x: this.x,
         repeat: 1,
         yoyo: true,
         yoyoEase: true,
         onComplete: () => {
-          this.active++;
-          if (this.active > this.contents.length - 1) {
-            this.active = 0;
+          this.active_content++;
+          if (this.active_content > this.contents.length - 1) {
+            this.active_content = 0;
           }
         }
       });
     },
     // 获取x动态值
     getX() {
-      this.x =
-        document.getElementById("notification_move").offsetWidth -
-        document.getElementById("notification_content").offsetWidth;
-      this.initGsap();
+      if (document.body.clientWidth > 650) {
+        this.x =
+          document.getElementById("notification_move").offsetWidth -
+          document.getElementById("notification_content").offsetWidth;
+        this.initGsap();
+      }
     }
   },
 
   watch: {
-    active(newData, oldData) {
-      console.log(newData);
-      if (newData !== oldData) {
-        setTimeout(this.getX);
+    // 监听是否位小屏
+    active(newData) {
+      if (this.t1) {
+        if (newData) this.t1.play();
+        else this.t1.pause();
+      }
+    },
+    //监听是否执行下一条
+    active_content(newData, oldData) {
+      if (this.t1) {
+        if (newData !== oldData) this.getX();
       }
     }
   }
