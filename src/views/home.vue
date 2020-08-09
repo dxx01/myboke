@@ -7,19 +7,25 @@
       "
     ></div>
     <Header />
+    <Notification />
     <Container />
   </div>
 </template>
 
 <script>
+// 头部部分
 import Header from "@/views/header/index.vue";
+// 中间部分
 import Container from "@/views/container/index.vue";
+// 通知/公告
+import Notification from "@/components/notification.vue";
 
 export default {
   name: "home",
   components: {
     Header,
-    Container
+    Container,
+    Notification
   },
   data() {
     return {

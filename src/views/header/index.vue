@@ -210,11 +210,11 @@ export default {
 #headerMode {
   width: 100%;
   height: 60px;
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.2);
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
   //box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.1);
   .nav {
     margin: 0 auto;
@@ -297,7 +297,7 @@ export default {
       position: absolute;
       top: 60px;
       width: 100%;
-      z-index: 2;
+      z-index: 99;
       background-color: rgba(44, 62, 80, 0.2);
       ul,
       li {
