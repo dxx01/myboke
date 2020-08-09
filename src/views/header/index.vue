@@ -210,7 +210,7 @@ export default {
 #headerMode {
   width: 100%;
   height: 60px;
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.2);
@@ -250,6 +250,8 @@ export default {
           width: 80px;
           text-align: center;
           line-height: 60px;
+          color: #333;
+          font-family: Arial, Helvetica, sans-serif;
           @media (max-width: 800px) {
             width: 70px;
           }
@@ -307,7 +309,7 @@ export default {
         text-align: center;
         padding: 10px 0;
         cursor: pointer;
-        color: #777;
+        color: #333;
       }
       .active {
         color: #4ba4ff;
@@ -323,7 +325,7 @@ export default {
         .mobile_inputSearch {
           width: 85%;
           padding: 5px 12px;
-          color: #777;
+          color: #333;
           background-color: rgba(255, 255, 255, 0.2);
           font-size: 15px;
           box-shadow: none;

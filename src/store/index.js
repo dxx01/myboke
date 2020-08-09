@@ -1,25 +1,22 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import header from "./modules/header";
+import defaultContent from "./defaultContent";
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
   state: {
-    height: 80
+    active: true
   },
   mutations: {
-    // 小屏模式下下拉框的长度
-    setHeight(state, val) {
-      state.height += val;
+    change(state, val) {
+      state.active = val;
     }
   },
-  actions: {
-    setHeight({ commit }, val) {
-      commit("setHeight", val);
-    }
-  },
+  actions: {},
   modules: {
-    header
+    header,
+    defaultContent
   }
 });
 export default store;

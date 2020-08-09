@@ -31,6 +31,22 @@ export default {
     return {
       url: require("../assets/imgs/big.jpg")
     };
+  },
+  created() {
+    if (document.body.clientWidth < 650) {
+      this.$store.commit("change", false);
+    } else {
+      this.$store.commit("change", true);
+    }
+  },
+  mounted() {
+    window.onresize = () => {
+      if (document.body.clientWidth < 650) {
+        this.$store.commit("change", false);
+      } else {
+        this.$store.commit("change", true);
+      }
+    };
   }
 };
 </script>
@@ -39,13 +55,13 @@ export default {
   width: 100%;
   height: 100%;
   .big {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-size: 100% 100%;
-    opacity: 0.5;
+    z-index: -1;
   }
 }
 </style>

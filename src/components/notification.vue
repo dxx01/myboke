@@ -1,32 +1,73 @@
 <template>
-  <div id="notification">
+  <div id="notification" v-show="this.$store.state.active">
     <div class="moveBox">
-      <div class="move">
-        <span>岁不寒,无以知松柏；事不难,无以知君子.－－《荀子·大略》</span>
+      <div id="notification_move">
+        <span id="notification_content">{{ contents[active] }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { TimelineMax } from "gsap";
 export default {
   name: "notification",
   props: [""],
   data() {
-    return {};
+    return {
+      contents: this.$store.state.defaultContent.contents,
+      active: 0,
+      x: 0,
+      // gsap
+      t1: null,
+      time: 10
+    };
   },
-
+  created() {},
   components: {},
 
   computed: {},
 
   beforeMount() {},
 
-  mounted() {},
+  mounted() {
+    this.getX();
+  },
 
-  methods: {},
+  methods: {
+    //gsap动画方法
+    initGsap() {
+      this.t1 = new TimelineMax();
+      this.t1.to("#notification_move", this.time, {
+        x: this.x,
+        repeat: 1,
+        yoyo: true,
+        yoyoEase: true,
+        onComplete: () => {
+          this.active++;
+          if (this.active > this.contents.length - 1) {
+            this.active = 0;
+          }
+        }
+      });
+    },
+    // 获取x动态值
+    getX() {
+      this.x =
+        document.getElementById("notification_move").offsetWidth -
+        document.getElementById("notification_content").offsetWidth;
+      this.initGsap();
+    }
+  },
 
-  watch: {}
+  watch: {
+    active(newData, oldData) {
+      console.log(newData);
+      if (newData !== oldData) {
+        setTimeout(this.getX);
+      }
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -40,26 +81,17 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
     overflow: hidden;
-    .move {
+    #notification_move {
       position: relative;
       top: 0;
       left: 0;
-      animation: moveText 20s infinite;
       white-space: nowrap;
-      .span {
+      #notification_content {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         font-size: 13px;
         vertical-align: middle;
         font-weight: normal;
-        color: #999999;
-      }
-    }
-    @keyframes moveText {
-      from {
-        left: 0;
-      }
-      to {
-        left: 100%;
+        color: #000000;
       }
     }
   }
