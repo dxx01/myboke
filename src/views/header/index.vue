@@ -70,34 +70,37 @@
         </svg>
       </div>
       <!-- 小屏模式菜单列表(<650px) -->
-      <div
-        id="mobile_dropdown_height"
-        class="mobile_dropdown"
-        :style="'visibility:' + (iconShiow ? 'hidden' : 'visible')"
-      >
-        <!-- 搜索 -->
-        <div class="mobile_search">
-          <input
-            type="text"
-            placeholder="请输入搜索内容"
-            class="mobile_inputSearch"
-            autocomplete="off"
-          />
-          <div class="mobile_searchBtn" @click="changeIcon(!iconShiow)">
-            搜索
+      <transition name="el-zoom-in-top">
+        <div
+          id="mobile_dropdown_height"
+          class="mobile_dropdown"
+          v-show="!iconShiow"
+        >
+          <!-- :style="'visibility:' + (iconShiow ? 'hidden' : 'visible')" -->
+          <!-- 搜索 -->
+          <div class="mobile_search">
+            <input
+              type="text"
+              placeholder="请输入搜索内容"
+              class="mobile_inputSearch"
+              autocomplete="off"
+            />
+            <div class="mobile_searchBtn" @click="changeIcon(!iconShiow)">
+              搜索
+            </div>
           </div>
+          <ul>
+            <li
+              :class="active === item.path ? 'active' : ''"
+              v-for="(item, index) in navData"
+              :key="index"
+              @click="choose(item.path, !iconShiow)"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
         </div>
-        <ul>
-          <li
-            :class="active === item.path ? 'active' : ''"
-            v-for="(item, index) in navData"
-            :key="index"
-            @click="choose(item.path, !iconShiow)"
-          >
-            {{ item.name }}
-          </li>
-        </ul>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -159,6 +162,7 @@ export default {
       if (document.body.clientWidth < 650) {
         this.iconShiow = true;
       } else {
+        // 恢复默认高度
         this.defaultHeight();
       }
     };
@@ -167,13 +171,17 @@ export default {
   methods: {
     ...mapMutations("header", {
       setHeight: "setHeight",
+      setActive: "setActive",
       defaultHeight: "defaultHeight"
     }),
     // 选择头部标签
     choose(path) {
       this.setActive(path);
       // 小屏时点击菜单选项下拉消失
-      if (document.body.clientWidth < 650) this.iconShiow = !this.iconShiow;
+      if (document.body.clientWidth < 650) {
+        this.iconShiow = !this.iconShiow;
+        this.disHeight(true);
+      }
     },
     // 小屏模式下切换展开图标
     changeIcon(val) {
@@ -185,11 +193,11 @@ export default {
       if (document.body.clientWidth < 650) {
         let height = 0;
         if (val === false) {
-          height += document.getElementById("mobile_dropdown_height")
-            .offsetHeight;
+          height += 306;
+          //document.getElementById("mobile_dropdown_height").offsetHeight;
         } else {
-          height -= document.getElementById("mobile_dropdown_height")
-            .offsetHeight;
+          height -= 306;
+          //document.getElementById("mobile_dropdown_height").offsetHeight;
         }
         this.setHeight(height);
       }
@@ -305,7 +313,7 @@ export default {
         color: #4ba4ff;
       }
       li:hover {
-        background-color: rgba(255, 255, 255, 1);
+        background-color: rgba(255, 255, 255, 0.2);
       }
       .mobile_search {
         display: flex;
