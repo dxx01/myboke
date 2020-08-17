@@ -61,10 +61,12 @@ export default {
     // 获取x动态值
     getX() {
       if (document.body.clientWidth > 650) {
-        this.x =
-          document.getElementById("notification_move").offsetWidth -
-          document.getElementById("notification_content").offsetWidth;
-        this.initGsap();
+        setTimeout(() => {
+          this.x =
+            document.getElementById("notification_move").offsetWidth -
+            document.getElementById("notification_content").offsetWidth;
+          this.initGsap();
+        }, 1000);
       }
     }
   },
