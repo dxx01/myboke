@@ -1,18 +1,27 @@
 <template>
-  <div id="content">
-    <div class="left"></div>
+  <div id="shouye">
+    <div class="left">
+      <Carousel />
+    </div>
     <div class="right"></div>
   </div>
 </template>
 
 <script>
+import Carousel from "@/components/carousel.vue";
 export default {
-  name: "content1"
+  name: "shouye",
+  data() {
+    return {};
+  },
+  components: {
+    Carousel
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-#content {
+#shouye {
   margin: 0 auto;
   max-width: 1200px;
   display: flex;
