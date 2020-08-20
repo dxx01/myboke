@@ -1,3 +1,4 @@
+<!-- gssp插件模块 -->
 <template>
   <div id="notification" v-show="active">
     <div class="moveBox">

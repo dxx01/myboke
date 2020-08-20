@@ -1,8 +1,8 @@
 export default {
   namespaced: true,
   state: {
-    active: "shouye",
-    height: 80
+    active: "shouye", // 当前选中标题
+    height: 80 //中间内容距离顶部距离
   },
   // 其实就是set 不能再异步方法调用
   mutations: {

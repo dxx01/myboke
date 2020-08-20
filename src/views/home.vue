@@ -33,6 +33,7 @@ export default {
     };
   },
   created() {
+    // 初始化判断窗口大小
     if (document.body.clientWidth < 650) {
       this.$store.commit("change", false);
     } else {
@@ -40,6 +41,7 @@ export default {
     }
   },
   mounted() {
+    // 判断窗口大小
     window.onresize = () => {
       if (document.body.clientWidth < 650) {
         this.$store.commit("change", false);
