@@ -19,10 +19,10 @@
     <!-- 小屏模式展示(<650px) -->
     <div class="mobile_nav">
       <div class="logo">邓鑫鑫博客</div>
-      <div class="mobile_menu" @click="changeIcon(!iconShiow)">
+      <div class="mobile_menu" @click="changeIcon(!iconShow)">
         <!-- 三 -->
         <svg
-          v-if="iconShiow"
+          v-if="iconShow"
           t="1596722270456"
           class="icon"
           viewBox="0 0 1024 1024"
@@ -51,7 +51,7 @@
         </svg>
         <!-- x -->
         <svg
-          v-if="!iconShiow"
+          v-if="!iconShow"
           t="1596724076285"
           class="icon"
           viewBox="0 0 1024 1024"
@@ -74,9 +74,9 @@
         <div
           id="mobile_dropdown_height"
           class="mobile_dropdown"
-          v-show="!iconShiow"
+          v-show="!iconShow"
         >
-          <!-- :style="'visibility:' + (iconShiow ? 'hidden' : 'visible')" -->
+          <!-- :style="'visibility:' + (iconShow ? 'hidden' : 'visible')" -->
           <!-- 搜索 -->
           <div class="mobile_search">
             <input
@@ -85,7 +85,7 @@
               class="mobile_inputSearch"
               autocomplete="off"
             />
-            <div class="mobile_searchBtn" @click="changeIcon(!iconShiow)">
+            <div class="mobile_searchBtn" @click="changeIcon(!iconShow)">
               搜索
             </div>
           </div>
@@ -94,7 +94,7 @@
               :class="active === item.path ? 'active' : ''"
               v-for="(item, index) in navData"
               :key="index"
-              @click="choose(item.path, !iconShiow)"
+              @click="choose(item.path, !iconShow)"
             >
               {{ item.name }}
             </li>
@@ -138,11 +138,11 @@ export default {
           name: "关于我",
           path: "about"
         }
-      ],
+      ]
       // 当前选中
       //active: this.$store.state.header.active,
       // 小屏模式下图标切换
-      iconShiow: true
+      //iconShow: true
     };
   },
 
@@ -150,42 +150,34 @@ export default {
 
   computed: {
     ...mapState("header", {
-      active: state => state.active
+      active: state => state.active,
+      iconShow: state => state.iconShow
     })
   },
 
   beforeMount() {},
 
-  mounted() {
-    // 每次缩小到小屏都重置iconShiow
-    window.onresize = () => {
-      if (document.body.clientWidth < 650) {
-        this.iconShiow = true;
-      } else {
-        // 恢复默认高度
-        this.defaultHeight();
-      }
-    };
-  },
+  mounted() {},
 
   methods: {
     ...mapMutations("header", {
       setHeight: "setHeight",
       setActive: "setActive",
-      defaultHeight: "defaultHeight"
+      defaultHeight: "defaultHeight",
+      setIconShow: "setIconShow"
     }),
     // 选择头部标签
     choose(path) {
       this.setActive(path);
       // 小屏时点击菜单选项下拉消失
       if (document.body.clientWidth < 650) {
-        this.iconShiow = !this.iconShiow;
+        this.setIconShow(true);
         this.disHeight(true);
       }
     },
     // 小屏模式下切换展开图标
     changeIcon(val) {
-      this.iconShiow = val;
+      this.setIconShow(val);
       this.disHeight(val);
     },
     // 获取小屏模式下列表高度并处理
@@ -193,10 +185,10 @@ export default {
       if (document.body.clientWidth < 650) {
         let height = 0;
         if (val === false) {
-          height += 306;
+          height = 326;
           //document.getElementById("mobile_dropdown_height").offsetHeight;
         } else {
-          height -= 306;
+          height = 20;
           //document.getElementById("mobile_dropdown_height").offsetHeight;
         }
         this.setHeight(height);
@@ -215,7 +207,10 @@ export default {
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.2);
   //margin-bottom: 20px;
-  //box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.1);
+  box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.1);
+  @media (max-width: 650px) {
+    position: relative;
+  }
   .nav {
     margin: 0 auto;
     max-width: 1200px;

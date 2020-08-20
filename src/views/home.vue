@@ -19,7 +19,7 @@ import Header from "@/views/header/index.vue";
 import Container from "@/views/container/index.vue";
 // 通知/公告
 import Notification from "@/components/notification.vue";
-
+import { mapMutations } from "vuex";
 export default {
   name: "home",
   components: {
@@ -36,8 +36,10 @@ export default {
     // 初始化判断窗口大小
     if (document.body.clientWidth < 650) {
       this.$store.commit("change", false);
+      this.setHeight(20);
     } else {
       this.$store.commit("change", true);
+      this.defaultHeight();
     }
   },
   mounted() {
@@ -45,10 +47,23 @@ export default {
     window.onresize = () => {
       if (document.body.clientWidth < 650) {
         this.$store.commit("change", false);
+        //处理头部距离下面的高度
+        this.setHeight(20);
+        //初始化菜单图标
+        this.setIconShow(true);
       } else {
         this.$store.commit("change", true);
+        //大屏回复头部距离下面的高度
+        this.defaultHeight();
       }
     };
+  },
+  methods: {
+    ...mapMutations("header", {
+      setHeight: "setHeight",
+      defaultHeight: "defaultHeight",
+      setIconShow: "setIconShow"
+    })
   }
 };
 </script>
