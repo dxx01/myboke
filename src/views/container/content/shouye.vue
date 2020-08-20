@@ -38,7 +38,7 @@ export default {
   name: "shouye",
   data() {
     return {
-      imgNum: 6
+      imgNum: 5
     };
   },
   components: {

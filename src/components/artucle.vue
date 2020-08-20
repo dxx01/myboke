@@ -3,13 +3,13 @@
   <div id="article">
     <div class="article_box" v-for="(articles, index) in 4" :key="index">
       <div class="article_title">
-        <h2>java基础：类和对象啊手动阀打发阿斯蒂撒大苏打撒旦芬</h2>
+        <h2>java基础：类和对象</h2>
       </div>
       <div class="article_tags">
         <div class="article_tag" v-for="item in 4" :key="item">java</div>
       </div>
       <div class="article_content">
-        安徽山东福建广东附件是风机打赏是的黄色发射点犯得上方法士大夫反对士大夫士大夫十大十大阿萨发金分割傻瓜的返回结果官方的世界观发挥教师的规划建设给飞机和公司电话分机估计是官方就是高房价宏观数据的官方结合公司的肌肤改善计划大纲
+        Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、动态性等特点。什么是对象？对象可以是一个变量，一个数据结构，或是一个函数。是面向对象（ObjectOriented）中的术语，既表示客观世界问题空间（Namespace）中的某个具体的事物，又表示软件系统解空间中的基本
       </div>
       <div class="article_list">
         <div class="article_list_box">
