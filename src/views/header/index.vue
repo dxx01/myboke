@@ -139,10 +139,6 @@ export default {
           path: "about"
         }
       ]
-      // 当前选中
-      //active: this.$store.state.header.active,
-      // 小屏模式下图标切换
-      //iconShow: true
     };
   },
 
@@ -186,10 +182,9 @@ export default {
         let height = 0;
         if (val === false) {
           height = 326;
-          //document.getElementById("mobile_dropdown_height").offsetHeight;
+          document.getElementById("container").style.paddingTop = "326px";
         } else {
-          height = 20;
-          //document.getElementById("mobile_dropdown_height").offsetHeight;
+          document.getElementById("container").style.paddingTop = "20px";
         }
         this.setHeight(height);
       }

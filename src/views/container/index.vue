@@ -1,5 +1,5 @@
 <template>
-  <div id="container" :style="'padding-top:' + height + 'px'">
+  <div id="container">
     <component :is="active"></component>
   </div>
 </template>
@@ -46,5 +46,9 @@ export default {
 #container {
   width: 100%;
   height: 100%;
+  padding-top: 80px;
+  @media (max-width: 650px) {
+    padding-top: 20px;
+  }
 }
 </style>

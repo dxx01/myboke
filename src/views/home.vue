@@ -36,7 +36,6 @@ export default {
     // 初始化判断窗口大小
     if (document.body.clientWidth < 650) {
       this.$store.commit("change", false);
-      this.setHeight(20);
     } else {
       this.$store.commit("change", true);
       this.defaultHeight();
@@ -47,22 +46,18 @@ export default {
     window.onresize = () => {
       if (document.body.clientWidth < 650) {
         this.$store.commit("change", false);
-        //处理头部距离下面的高度
-        this.setHeight(20);
-        //初始化菜单图标
-        this.setIconShow(true);
+        if (this.$store.state.header.iconShow)
+          document.getElementById("container").style.paddingTop = "20px";
+        else document.getElementById("container").style.paddingTop = "326px";
       } else {
         this.$store.commit("change", true);
-        //大屏回复头部距离下面的高度
-        this.defaultHeight();
+        document.getElementById("container").style.paddingTop = "80px";
       }
     };
   },
   methods: {
     ...mapMutations("header", {
-      setHeight: "setHeight",
-      defaultHeight: "defaultHeight",
-      setIconShow: "setIconShow"
+      setHeight: "setHeight"
     })
   }
 };
