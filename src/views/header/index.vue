@@ -247,7 +247,8 @@ export default {
           }
         }
         .active {
-          color: #4ba4ff;
+          background-color: #4ba4ff;
+          color: #fff;
         }
         li:hover {
           background-color: #4ba4ff;

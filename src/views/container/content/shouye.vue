@@ -27,12 +27,17 @@
         <Artucle></Artucle>
       </div>
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <div class="right_div1">
+        <Presentation></Presentation>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Artucle from "@/components/artucle.vue";
+import Artucle from "@/components/artucle.vue"; //文章模块
+import Presentation from "@/components/presentation.vue"; //个人简介模块
 import { mapState } from "vuex";
 export default {
   name: "shouye",
@@ -42,7 +47,8 @@ export default {
     };
   },
   components: {
-    Artucle
+    Artucle,
+    Presentation
   },
   computed: {
     ...mapState({
@@ -99,10 +105,12 @@ export default {
   }
   .right {
     width: 30%;
-    height: 300px;
-    background: black;
     @media (max-width: 900px) {
       display: none;
+    }
+    .right_div1 {
+      width: 100%;
+      height: 300px;
     }
   }
 }
