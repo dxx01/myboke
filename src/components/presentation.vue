@@ -11,14 +11,46 @@
       </div>
     </div>
     <div class="bottom_box">
-      <div class="box box_border">
-        <img :src="require('@/assets/imgs/presentation/qq.png')" />
+      <div class="box box_border" @click="changeqq(!qq)">
+        <transition name="el-zoom-in-top">
+          <img
+            title="点击添加QQ"
+            v-if="qq"
+            :src="require('@/assets/imgs/presentation/qq.png')"
+          />
+        </transition>
+        <transition name="el-zoom-in-bottom">
+          <img
+            style="width:100%;height:100%;position: absolute;left:0;"
+            v-if="!qq"
+            :src="require('@/assets/imgs/presentation/qq2.jpg')"
+          />
+        </transition>
+      </div>
+      <div class="box box_border" @click="changeweixin(!weixin)">
+        <transition name="el-zoom-in-top">
+          <img
+            title="点击添加微信"
+            v-if="weixin"
+            :src="require('@/assets/imgs/presentation/weixin.png')"
+          />
+        </transition>
+        <transition name="el-zoom-in-bottom">
+          <img
+            style="width:100%;height:100%;position: absolute;left:0;"
+            v-if="!weixin"
+            :src="require('@/assets/imgs/presentation/weixin2.jpg')"
+          />
+        </transition>
       </div>
       <div class="box box_border">
-        <img :src="require('@/assets/imgs/presentation/weixin.png')" />
-      </div>
-      <div class="box box_border">
-        <img :src="require('@/assets/imgs/presentation/github.png')" />
+        <a
+          target="_blank"
+          href="https://github.com/dxx01/myboke"
+          title="去往github"
+        >
+          <img :src="require('@/assets/imgs/presentation/github.png')"
+        /></a>
       </div>
       <div class="box"></div>
     </div>
@@ -29,7 +61,18 @@
 export default {
   name: "presentation",
   data() {
-    return {};
+    return {
+      qq: true,
+      weixin: true
+    };
+  },
+  methods: {
+    changeqq(val) {
+      this.qq = val;
+    },
+    changeweixin(val) {
+      this.weixin = val;
+    }
   }
 };
 </script>
@@ -72,6 +115,7 @@ export default {
       cursor: pointer;
       text-align: center;
       line-height: 99px;
+      position: relative;
       img {
         width: 32px;
         height: 32px;

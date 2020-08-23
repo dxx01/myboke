@@ -57,7 +57,8 @@ export default {
   },
   methods: {
     ...mapMutations("header", {
-      setHeight: "setHeight"
+      setHeight: "setHeight",
+      defaultHeight: "defaultHeight"
     })
   }
 };

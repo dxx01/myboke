@@ -2,7 +2,7 @@
   <div id="headerMode">
     <!-- 大屏模式展示(>650px) -->
     <div class="nav">
-      <div class="logo">邓鑫鑫博客</div>
+      <div class="logo">邓先生博客</div>
       <div class="navlist">
         <ul class="header_ul">
           <li
@@ -18,7 +18,7 @@
     </div>
     <!-- 小屏模式展示(<650px) -->
     <div class="mobile_nav">
-      <div class="logo">邓鑫鑫博客</div>
+      <div class="logo">邓先生博客</div>
       <div class="mobile_menu" @click="changeIcon(!iconShow)">
         <!-- 三 -->
         <svg
