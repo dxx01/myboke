@@ -200,9 +200,9 @@ export default {
   position: fixed;
   top: 0;
   z-index: 9999;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
   //margin-bottom: 20px;
-  box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.1);
+  box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.2);
   @media (max-width: 650px) {
     position: relative;
   }

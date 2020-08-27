@@ -26,6 +26,10 @@
       <div class="sy_artucle">
         <Artucle></Artucle>
       </div>
+      <!-- 分页模块-->
+      <div style="width:100%;">
+        <Paging></Paging>
+      </div>
     </div>
     <div class="right">
       <div class="right_div1">
@@ -38,6 +42,7 @@
 <script>
 import Artucle from "@/components/artucle.vue"; //文章模块
 import Presentation from "@/components/presentation.vue"; //个人简介模块
+import Paging from "@/components/paging.vue";
 import { mapState } from "vuex";
 export default {
   name: "shouye",
@@ -48,7 +53,8 @@ export default {
   },
   components: {
     Artucle,
-    Presentation
+    Presentation,
+    Paging
   },
   computed: {
     ...mapState({

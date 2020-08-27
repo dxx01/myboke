@@ -9,6 +9,7 @@
     <Header />
     <Notification />
     <Container />
+    <Foot />
   </div>
 </template>
 
@@ -17,6 +18,8 @@
 import Header from "@/views/header/index.vue";
 // 中间部分
 import Container from "@/views/container/index.vue";
+// 底部
+import Foot from "@/views/foot/index.vue";
 // 通知/公告
 import Notification from "@/components/notification.vue";
 import { mapMutations } from "vuex";
@@ -25,7 +28,8 @@ export default {
   components: {
     Header,
     Container,
-    Notification
+    Notification,
+    Foot
   },
   data() {
     return {
