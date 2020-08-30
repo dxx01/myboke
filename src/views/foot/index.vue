@@ -39,9 +39,13 @@ export default {
   .footdiv {
     margin: 0 auto;
     max-width: 1200px;
+    height: 100%;
+    display: flex;
+    align-items: center; /*定义body的元素垂直居中*/
+    justify-content: center; /*定义body的里的元素水平居中*/
     .copyright {
+      width: 100%;
       text-align: center;
-      line-height: 60px;
     }
   }
 }
