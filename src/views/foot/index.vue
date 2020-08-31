@@ -3,7 +3,7 @@
     <div class="footdiv">
       <div class="copyright">
         Copyright © dengxinxin.fun All Rights Reserved.
-        备案号：晋ICP备19007319号
+        备案号：赣ICP备2020010421号
       </div>
     </div>
   </div>
