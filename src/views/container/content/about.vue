@@ -1,5 +1,5 @@
 <template>
-  <div id="about">
+  <div id="about" v-title data-title="关于我">
     关于我
   </div>
 </template>

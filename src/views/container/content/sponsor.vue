@@ -1,5 +1,5 @@
 <template>
-  <div id="sponsor">
+  <div id="sponsor" v-title data-title="赞助">
     赞助
   </div>
 </template>

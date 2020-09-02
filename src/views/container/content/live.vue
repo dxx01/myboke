@@ -1,5 +1,5 @@
 <template>
-  <div id="live">
+  <div id="live" v-title data-title="爱生活">
     爱生活
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div id="shouye">
+  <div id="shouye" v-title data-title="首页">
     <div class="left">
       <!-- 轮播 -->
       <div class="sy_img">

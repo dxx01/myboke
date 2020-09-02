@@ -1,5 +1,5 @@
 <template>
-  <div id="message">
+  <div id="message" v-title data-title="留言板">
     留言板
   </div>
 </template>

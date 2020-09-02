@@ -1,5 +1,5 @@
 <template>
-  <div id="techZones">
+  <div id="techZones" v-title data-title="技术专区">
     技术专区
   </div>
 </template>
