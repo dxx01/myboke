@@ -33,7 +33,7 @@
     </div>
     <div class="right">
       <div class="right_div1">
-        <Presentation></Presentation>
+        <Presentation> </Presentation>
       </div>
     </div>
   </div>
