@@ -53,7 +53,6 @@
             <img :src="require('@/assets/imgs/presentation/github.png')"
           /></a>
         </div>
-        <div class="box"></div>
       </div>
     </slot>
   </div>
@@ -81,10 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 #presentation {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.5);
+  @include d_div;
   font-weight: 600;
   .presentation_box {
     width: calc(100% - 20px);
@@ -109,7 +105,7 @@ export default {
     display: flex;
     flex-direction: row;
     .box {
-      width: 25%;
+      width: 33.33%;
       height: 100%;
       box-sizing: border-box;
       -webkit-box-sizing: border-box;

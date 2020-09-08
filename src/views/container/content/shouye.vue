@@ -35,6 +35,9 @@
       <div class="right_div1">
         <Presentation> </Presentation>
       </div>
+      <div class="right_div2">
+        <Ranking />
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +45,8 @@
 <script>
 import Artucle from "@/components/artucle.vue"; //文章模块
 import Presentation from "@/components/presentation.vue"; //个人简介模块
-import Paging from "@/components/paging.vue";
+import Paging from "@/components/paging.vue"; //分页模块
+import Ranking from "@/components/ranking.vue";
 import { mapState } from "vuex";
 export default {
   name: "shouye",
@@ -54,7 +58,8 @@ export default {
   components: {
     Artucle,
     Presentation,
-    Paging
+    Paging,
+    Ranking
   },
   computed: {
     ...mapState({
@@ -80,7 +85,7 @@ export default {
   display: flex;
   justify-content: space-between;
   .left {
-    width: calc(70% - 20px);
+    @include d-left;
     @media (max-width: 900px) {
       width: 100%;
     }
@@ -110,13 +115,17 @@ export default {
     }
   }
   .right {
-    width: 30%;
+    @include d-right;
     @media (max-width: 900px) {
       display: none;
     }
     .right_div1 {
       width: 100%;
       height: 300px;
+      margin-bottom: 20px;
+    }
+    .right_div2 {
+      width: 100%;
     }
   }
 }
