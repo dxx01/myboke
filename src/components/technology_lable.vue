@@ -4,14 +4,14 @@
       <div class="title">技术标签</div>
       <div class="l-border"></div>
       <div id="tagscloud">
-        <a
-          href="#"
+        <router-link
+          to="/"
           :style="'background:' + getColor()"
           v-for="(item, index) in tagsData"
           :key="index"
-          @mouseover="one($event)"
-          @mouseout="two($event)"
-          >{{ item }}</a
+          @mouseover="one(index, $event)"
+          @mouseout="two(index, $event)"
+          >{{ item }}</router-link
         >
       </div>
     </div>
@@ -202,11 +202,27 @@ export default {
       this.sc = Math.sin(c * this.dtr);
       this.cc = Math.cos(c * this.dtr);
     },
-    one(event) {
-      console.log(event);
+    one(i, event) {
+      this.mcList.forEach((item, index) => {
+        if (i === index) {
+          item.on = true;
+          event.target.style.zIndex = 999;
+          event.target.style.opacity = 1;
+          event.target.style.filter = "alpha(opacity=100)";
+          event.target.style.background = "#4ba4ff";
+        }
+      });
     },
-    two(event) {
-      console.log(event);
+    two(i, event) {
+      this.mcList.forEach((item, index) => {
+        if (i === index) {
+          item.on = false;
+          event.target.style.filter = "alpha(opacity=" + 100 * item.alpha + ")";
+          event.target.style.opacity = item.alpha;
+          event.target.style.zIndex = item.zIndex;
+          event.target.style.background = this.getColor();
+        }
+      });
     }
   },
   components: {}

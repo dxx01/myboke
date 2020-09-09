@@ -67,19 +67,17 @@ export default {
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis; //超出内容用省略号表示
-        height: 25px;
+        height: 35px;
         margin-bottom: 10px;
-        line-height: 25px;
+        line-height: 35px;
         counter-increment: count;
       }
       li:nth-child(2n-1) {
-        background: rgba(230, 230, 230, 0.4);
+        background-color: rgba(255, 255, 255, 0.6);
       }
       li a {
-        margin-left: 18px;
         white-space: nowrap; //元素不进行换行
-
-        padding-left: 15px;
+        padding-left: 30px;
         font-size: 17px;
       }
       li a:hover {

@@ -31,7 +31,8 @@ window.onload = function() {
     oTag = {};
     aA[i].onmouseover = (function(obj) {
       return function() {
-        obj.on = true;
+        console.log(obj);
+        //obj.on = true;
         this.style.zIndex = 9999;
         this.style.color = "#fff";
         this.style.padding = "5px 5px";
@@ -42,6 +43,7 @@ window.onload = function() {
     })(oTag);
     aA[i].onmouseout = (function(obj) {
       return function() {
+        console.log(obj);
         obj.on = false;
         this.style.zIndex = obj.zIndex;
         this.style.color = "#fff";
@@ -72,7 +74,7 @@ function getColor() {
   str = "rgba(" + this.r + "," + this.g + "," + this.b + ",0.8)";
   return str;
 }
-export function update() {
+function update() {
   var a,
     b,
     c = 0;
@@ -116,7 +118,7 @@ export function update() {
   }
   doPosition();
 }
-export function positionAll() {
+function positionAll() {
   var phi = 0;
   var theta = 0;
   var max = mcList.length;
@@ -139,7 +141,7 @@ export function positionAll() {
       mcList[i].cy + oDiv.offsetHeight / 2 - mcList[i].offsetHeight / 2 + "px";
   }
 }
-export function doPosition() {
+function doPosition() {
   var l = oDiv.offsetWidth / 2;
   var t = oDiv.offsetHeight / 2;
   for (var i = 0; i < mcList.length; i++) {
@@ -162,7 +164,7 @@ export function doPosition() {
     aAs.opacity = mcList[i].alpha;
   }
 }
-export function sineCosine(a, b, c) {
+function sineCosine(a, b, c) {
   sa = Math.sin(a * dtr);
   ca = Math.cos(a * dtr);
   sb = Math.sin(b * dtr);
