@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 module.exports = {
   devServer: {
     port: 8880, // 启动端口
@@ -11,5 +12,14 @@ module.exports = {
         prependData: `@import "@/assets/css/default.scss";`
       }
     }
+  },
+  configureWebpack: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "windows.jQuery": "jquery"
+      })
+    ]
   }
 };

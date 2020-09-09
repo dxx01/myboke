@@ -36,9 +36,20 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+ul,
+li,
+a {
   margin: 0;
   padding: 0;
+}
+a {
+  text-decoration: none;
+  color: $my-color2;
+}
+ul,
+li {
+  list-style-type: none;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

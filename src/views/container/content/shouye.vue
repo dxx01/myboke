@@ -32,11 +32,14 @@
       </div>
     </div>
     <div class="right">
-      <div class="right_div1">
+      <div class="right_div">
         <Presentation> </Presentation>
       </div>
-      <div class="right_div2">
+      <div class="right_div">
         <Ranking />
+      </div>
+      <div class="right_div">
+        <TechnologyLabel />
       </div>
     </div>
   </div>
@@ -46,7 +49,8 @@
 import Artucle from "@/components/artucle.vue"; //文章模块
 import Presentation from "@/components/presentation.vue"; //个人简介模块
 import Paging from "@/components/paging.vue"; //分页模块
-import Ranking from "@/components/ranking.vue";
+import Ranking from "@/components/ranking.vue"; //排行模块
+import TechnologyLabel from "@/components/technology_lable.vue"; // 标签模块
 import { mapState } from "vuex";
 export default {
   name: "shouye",
@@ -59,7 +63,8 @@ export default {
     Artucle,
     Presentation,
     Paging,
-    Ranking
+    Ranking,
+    TechnologyLabel
   },
   computed: {
     ...mapState({
@@ -119,13 +124,9 @@ export default {
     @media (max-width: 900px) {
       display: none;
     }
-    .right_div1 {
+    .right_div {
       width: 100%;
-      height: 300px;
       margin-bottom: 20px;
-    }
-    .right_div2 {
-      width: 100%;
     }
   }
 }
