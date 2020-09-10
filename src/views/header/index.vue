@@ -73,12 +73,7 @@
       </div>
       <!-- 小屏模式菜单列表(<650px) -->
       <transition name="el-zoom-in-top">
-        <div
-          id="mobile_dropdown_height"
-          class="mobile_dropdown"
-          v-show="!iconShow"
-        >
-          <!-- :style="'visibility:' + (iconShow ? 'hidden' : 'visible')" -->
+        <div class="mobile_dropdown" v-show="!iconShow">
           <!-- 搜索 -->
           <div class="mobile_search">
             <input
@@ -157,7 +152,9 @@ export default {
 
   beforeMount() {},
 
-  mounted() {},
+  mounted() {
+    this.setActive(this.$route.name);
+  },
 
   methods: {
     ...mapMutations("header", {
@@ -171,26 +168,13 @@ export default {
       // 小屏时点击菜单选项下拉消失
       if (document.body.clientWidth < 650) {
         this.setIconShow(true);
-        this.disHeight(true);
       }
     },
     // 小屏模式下切换展开图标
     changeIcon(val) {
       this.setIconShow(val);
-      this.disHeight(val);
-    },
-    // 获取小屏模式下列表高度并处理
-    disHeight(val) {
-      if (document.body.clientWidth < 650) {
-        if (val === false) {
-          document.getElementById("container").style.paddingTop = "326px";
-        } else {
-          document.getElementById("container").style.paddingTop = "20px";
-        }
-      }
     }
-  },
-  watch: {}
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -299,7 +283,6 @@ export default {
       width: 100%;
       z-index: 99;
       background-color: rgba(44, 62, 80, 0.2);
-      ul,
       li {
         list-style-type: none;
         margin: 0;
@@ -308,6 +291,7 @@ export default {
         padding: 10px 0;
         cursor: pointer;
         color: #333;
+        //height: 41px;
         a {
           display: block;
         }

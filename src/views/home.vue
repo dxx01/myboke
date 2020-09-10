@@ -22,6 +22,7 @@ import Container from "@/views/container/index.vue";
 import Foot from "@/views/foot/index.vue";
 // 通知/公告
 import Notification from "@/components/notification.vue";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "home",
   components: {
@@ -50,13 +51,36 @@ export default {
         this.$store.commit("change", false);
         if (this.$store.state.header.iconShow)
           document.getElementById("container").style.paddingTop = "20px";
-        else document.getElementById("container").style.paddingTop = "326px";
+        else document.getElementById("container").style.paddingTop = "306px";
       } else {
         this.$store.commit("change", true);
+        document.getElementById("container").style.paddingTop = "20px";
       }
     };
   },
-  methods: {}
+  // 监听,当路由发生变化的时候执行
+  watch: {
+    $route(newData) {
+      this.setActive(newData.name);
+    },
+    iconShow(newData) {
+      if (newData) {
+        document.getElementById("container").style.paddingTop = "20px";
+      } else {
+        document.getElementById("container").style.paddingTop = "306px";
+      }
+    }
+  },
+  computed: {
+    ...mapState("header", {
+      iconShow: state => state.iconShow
+    })
+  },
+  methods: {
+    ...mapMutations("header", {
+      setActive: "setActive"
+    })
+  }
 };
 </script>
 <style lang="scss" scoped>

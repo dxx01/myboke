@@ -20,9 +20,6 @@ export default {
   actions: {
     setActive({ commit }, val) {
       commit("setActive", val);
-    },
-    setHeight({ commit }, val) {
-      commit("setHeight", val);
     }
   },
   getters: {

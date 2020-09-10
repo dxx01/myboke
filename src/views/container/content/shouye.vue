@@ -88,12 +88,9 @@ export default {
   margin: 0 auto;
   max-width: 1200px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   .left {
     @include d-left;
-    @media (max-width: 900px) {
-      width: 100%;
-    }
     .sy_img {
       position: relative;
       width: 100%;
@@ -121,12 +118,16 @@ export default {
   }
   .right {
     @include d-right;
-    @media (max-width: 900px) {
-      display: none;
-    }
     .right_div {
+      border-radius: 4px;
       width: 100%;
       margin-bottom: 20px;
+      @media (max-width: 900px) {
+        width: calc(50% - 10px);
+      }
+      @media (max-width: 500px) {
+        width: 100%;
+      }
     }
   }
 }
