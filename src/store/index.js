@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import header from "./modules/header";
 import defaultContent from "./defaultContent";
+import navigation from "./modules/navigation";
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
@@ -16,7 +17,8 @@ let store = new Vuex.Store({
   actions: {},
   modules: {
     header,
-    defaultContent
+    defaultContent,
+    navigation
   }
 });
 export default store;

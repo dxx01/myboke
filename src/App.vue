@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "app",
   props: [""],
@@ -18,9 +19,18 @@ export default {
 
   beforeMount() {},
 
-  mounted() {},
+  mounted() {
+    window.addEventListener("click", this.activeChange);
+  },
 
-  methods: {},
+  methods: {
+    ...mapMutations("header", {
+      setActive: "setActive"
+    }),
+    activeChange() {
+      this.setActive(this.$route.name);
+    }
+  },
 
   watch: {}
 };

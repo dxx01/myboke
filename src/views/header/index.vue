@@ -11,7 +11,9 @@
             :key="index"
             @click="choose(item.path)"
           >
-            {{ item.name }}
+            <router-link :to="'/home/' + item.path">{{
+              item.name
+            }}</router-link>
           </li>
         </ul>
       </div>
@@ -96,7 +98,9 @@
               :key="index"
               @click="choose(item.path, !iconShow)"
             >
-              {{ item.name }}
+              <router-link :to="'/home/' + item.path">{{
+                item.name
+              }}</router-link>
             </li>
           </ul>
         </div>
@@ -157,7 +161,6 @@ export default {
 
   methods: {
     ...mapMutations("header", {
-      setHeight: "setHeight",
       setActive: "setActive",
       defaultHeight: "defaultHeight",
       setIconShow: "setIconShow"
@@ -179,14 +182,11 @@ export default {
     // 获取小屏模式下列表高度并处理
     disHeight(val) {
       if (document.body.clientWidth < 650) {
-        let height = 0;
         if (val === false) {
-          height = 326;
           document.getElementById("container").style.paddingTop = "326px";
         } else {
           document.getElementById("container").style.paddingTop = "20px";
         }
-        this.setHeight(height);
       }
     }
   },
@@ -197,7 +197,7 @@ export default {
 #headerMode {
   width: 100%;
   height: 60px;
-  position: fixed;
+  position: relative;
   top: 0;
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.5);
@@ -245,14 +245,21 @@ export default {
           @media (max-width: 800px) {
             width: 70px;
           }
+          a {
+            display: block;
+          }
         }
         .active {
           background-color: #4ba4ff;
-          color: #fff;
+          a {
+            color: #fff;
+          }
         }
         li:hover {
           background-color: #4ba4ff;
-          color: #fff;
+          a {
+            color: #fff;
+          }
           cursor: pointer;
         }
       }
@@ -301,9 +308,14 @@ export default {
         padding: 10px 0;
         cursor: pointer;
         color: #333;
+        a {
+          display: block;
+        }
       }
       .active {
-        color: #4ba4ff;
+        a {
+          color: #4ba4ff;
+        }
       }
       li:hover {
         background-color: rgba(255, 255, 255, 0.2);

@@ -4,14 +4,14 @@
       <div class="title">技术标签</div>
       <div class="l-border"></div>
       <div id="tagscloud">
-        <router-link
-          to="/"
+        <a
+          href="#"
           :style="'background:' + getColor()"
           v-for="(item, index) in tagsData"
           :key="index"
           @mouseover="one(index, $event)"
           @mouseout="two(index, $event)"
-          >{{ item }}</router-link
+          >{{ item }}</a
         >
       </div>
     </div>

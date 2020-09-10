@@ -22,7 +22,6 @@ import Container from "@/views/container/index.vue";
 import Foot from "@/views/foot/index.vue";
 // 通知/公告
 import Notification from "@/components/notification.vue";
-import { mapMutations } from "vuex";
 export default {
   name: "home",
   components: {
@@ -42,7 +41,6 @@ export default {
       this.$store.commit("change", false);
     } else {
       this.$store.commit("change", true);
-      this.defaultHeight();
     }
   },
   mounted() {
@@ -55,16 +53,10 @@ export default {
         else document.getElementById("container").style.paddingTop = "326px";
       } else {
         this.$store.commit("change", true);
-        document.getElementById("container").style.paddingTop = "80px";
       }
     };
   },
-  methods: {
-    ...mapMutations("header", {
-      setHeight: "setHeight",
-      defaultHeight: "defaultHeight"
-    })
-  }
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>

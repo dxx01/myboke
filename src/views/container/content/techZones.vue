@@ -1,12 +1,19 @@
 <template>
   <div id="techZones" v-title data-title="技术专区">
-    技术专区
+    <Navigation />
   </div>
 </template>
 
 <script>
+import Navigation from "@/components/navigation.vue";
 export default {
-  name: "techZones"
+  name: "techZones",
+  data() {
+    return {};
+  },
+  components: {
+    Navigation
+  }
 };
 </script>
 
