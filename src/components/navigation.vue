@@ -4,32 +4,43 @@
       <el-breadcrumb-item :to="{ path: '/home/shouye' }"
         >首页</el-breadcrumb-item
       >
-      <el-breadcrumb-item :to="{ path: '/home/shouye' }"
+      <el-breadcrumb-item
+        v-for="(item, index) in navigationData"
+        :key="index"
+        :to="item"
         >活动管理</el-breadcrumb-item
       >
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
-  name: "navigation",
+  name: "m_navigation",
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    ...mapMutations("navigation", {
+      setNavigationData: "setNavigationData"
+    })
+  },
+  created() {
+    this.setNavigationData(this.$route.path);
+  },
+  watch: {
+    $route(newData) {
+      this.setNavigationData(newData.path);
+    }
+  },
   mounted() {},
   computed: {
     ...mapState("header", {
       active: state => state.active
     }),
     ...mapState("navigation", {
-      home: state => state.home,
-      two: state => state.two,
-      three: state => state.three
+      navigationData: state => state.navigationData
     })
   }
 };
@@ -42,8 +53,13 @@ export default {
       color: $my-color2;
       font-weight: 600 !important ;
     }
+    .el-breadcrumb__inner {
+      color: $my-color2;
+      font-weight: 600 !important ;
+    }
     .el-breadcrumb__inner:hover {
       color: $my-color;
+      cursor: pointer;
     }
   }
 }
@@ -52,6 +68,7 @@ export default {
 #navigation {
   width: 100%;
   height: 40px;
+  margin-bottom: 20px;
   background: $my-background;
   line-height: 40px;
   border-radius: 4px;
@@ -59,12 +76,6 @@ export default {
     height: 100%;
     line-height: 40px;
     margin: 0 20px;
-    span {
-      color: $my-color2;
-    }
-    span:hover {
-      color: $my-color;
-    }
   }
 }
 </style>

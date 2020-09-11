@@ -1,5 +1,7 @@
 export default {
+  namespaced: true,
   state: {},
-  mutatons: {},
-  actions: {}
+  mutations: {},
+  actions: {},
+  getters: {}
 };

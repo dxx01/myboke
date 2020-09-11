@@ -31,8 +31,7 @@ window.onload = function() {
     oTag = {};
     aA[i].onmouseover = (function(obj) {
       return function() {
-        console.log(obj);
-        //obj.on = true;
+        obj.on = true;
         this.style.zIndex = 9999;
         this.style.color = "#fff";
         this.style.padding = "5px 5px";
@@ -43,7 +42,6 @@ window.onload = function() {
     })(oTag);
     aA[i].onmouseout = (function(obj) {
       return function() {
-        console.log(obj);
         obj.on = false;
         this.style.zIndex = obj.zIndex;
         this.style.color = "#fff";

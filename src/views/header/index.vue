@@ -140,9 +140,7 @@ export default {
       ]
     };
   },
-
   components: {},
-
   computed: {
     ...mapState("header", {
       active: state => state.active,
@@ -153,7 +151,7 @@ export default {
   beforeMount() {},
 
   mounted() {
-    this.setActive(this.$route.name);
+    //this.setActive(this.$route.name);
   },
 
   methods: {

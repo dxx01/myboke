@@ -57,6 +57,7 @@ export default {
         document.getElementById("container").style.paddingTop = "20px";
       }
     };
+    this.setActive(this.$route.name);
   },
   // 监听,当路由发生变化的时候执行
   watch: {
@@ -79,6 +80,9 @@ export default {
   methods: {
     ...mapMutations("header", {
       setActive: "setActive"
+    }),
+    ...mapMutations("navigation", {
+      setNavigationData: "setNavigationData"
     })
   }
 };

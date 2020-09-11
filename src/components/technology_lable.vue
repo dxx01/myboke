@@ -5,12 +5,12 @@
       <div class="l-border"></div>
       <div id="tagscloud">
         <a
-          href="#"
           :style="'background:' + getColor()"
           v-for="(item, index) in tagsData"
           :key="index"
           @mouseover="one(index, $event)"
           @mouseout="two(index, $event)"
+          @click="choose"
           >{{ item }}</a
         >
       </div>
@@ -223,6 +223,9 @@ export default {
           event.target.style.background = this.getColor();
         }
       });
+    },
+    choose() {
+      this.$router.push("/home/techZones/tag");
     }
   },
   components: {}
@@ -264,6 +267,7 @@ export default {
         border-radius: 3px;
       }
       a:hover {
+        cursor: pointer;
         background: $my-color;
       }
     }

@@ -23,7 +23,7 @@ const routes = [
       },
       {
         // 技术专区
-        path: "techZones",
+        path: "techZones/:tag?/:id?",
         name: "techZones",
         component: () => import("@/views/container/content/techZones.vue")
       },
