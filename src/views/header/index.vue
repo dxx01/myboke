@@ -15,11 +15,15 @@
               item.name
             }}</router-link>
           </li>
+          <li>登录</li>
         </ul>
       </div>
     </div>
     <!-- 小屏模式展示(<650px) -->
     <div class="mobile_nav">
+      <div class="userImg">
+        <img :src="src" alt="" />
+      </div>
       <div class="logo">邓先生博客</div>
       <div class="mobile_menu" @click="changeIcon(!iconShow)">
         <!-- 三 -->
@@ -137,7 +141,8 @@ export default {
           name: "关于我",
           path: "about"
         }
-      ]
+      ],
+      src: require("@/assets/user.jpg")
     };
   },
   components: {},
@@ -179,8 +184,8 @@ export default {
 #headerMode {
   width: 100%;
   height: 60px;
-  position: relative;
-  top: 0;
+  position: fixed;
+  top: 0px;
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.5);
   //margin-bottom: 20px;
@@ -255,11 +260,20 @@ export default {
     @media (min-width: 650px) {
       display: none;
     }
+    .userImg {
+      width: 35px;
+      height: 35px;
+      margin: 12px 0 0 15px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+      }
+    }
     .logo {
       font-size: 22px;
       font-family: cursive;
       font-weight: bolder;
-      margin-left: 10px;
       line-height: 60px;
       cursor: pointer;
     }

@@ -18,8 +18,8 @@ export default {
 <style lang="scss" scoped>
 #container {
   width: 100%;
-  height: 100%;
-  padding-top: 20px;
+  padding-top: 80px;
+  position: relative;
   @media (max-width: 650px) {
     padding-top: 20px;
   }

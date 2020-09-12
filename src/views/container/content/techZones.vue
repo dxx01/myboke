@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 #techZones {
+  position: relative;
   margin: 0 auto;
   max-width: 1200px;
   display: flex;
@@ -30,12 +31,10 @@ export default {
   align-content: flex-start; //设置换行没空隙
   .left {
     @include d-left;
-    height: 500px;
     background: rgba(255, 255, 255, 0.5);
   }
   .right {
     @include d-right;
-    height: 500px;
     background: rgba(255, 255, 255, 0.5);
   }
 }

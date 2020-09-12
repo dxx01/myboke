@@ -54,7 +54,7 @@ export default {
         else document.getElementById("container").style.paddingTop = "306px";
       } else {
         this.$store.commit("change", true);
-        document.getElementById("container").style.paddingTop = "20px";
+        document.getElementById("container").style.paddingTop = "80px";
       }
     };
     this.setActive(this.$route.name);
@@ -91,6 +91,7 @@ export default {
 #home {
   width: 100%;
   height: 100%;
+  position: absolute;
   .big {
     position: fixed;
     top: 0;

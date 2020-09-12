@@ -6,11 +6,14 @@
 
 <script>
 export default {
-  name: "message"
+  name: "message",
+  data() {
+    return {};
+  }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #message {
   margin: 0 auto;
   max-width: 1200px;
