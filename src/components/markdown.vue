@@ -1,5 +1,7 @@
 <template>
-  <div id="markdowndiv"><Markdown /></div>
+  <div id="markdowndiv">
+    <Markdown initialValue="请编辑您的内容" @on-save="handleOnSave" />
+  </div>
 </template>
 
 <script>
@@ -15,7 +17,11 @@ export default {
   components: {
     Markdown
   },
-  methods: {}
+  methods: {
+    handleOnSave({ value, theme }) {
+      console.log(value, theme);
+    }
+  }
 };
 </script>
 
@@ -29,6 +35,10 @@ export default {
     background: rgba(255, 255, 255, 0.1);
     .markdown-toolbars {
       background: rgba(255, 255, 255, 0.1);
+      li::after {
+        background: #dcd5d580;
+        color: $my-color2;
+      }
     }
     .close-preview {
       background: rgba(255, 255, 255, 0.1);
@@ -48,6 +58,7 @@ export default {
         textarea {
           background: rgba(255, 255, 255, 0.1);
           color: $my-color2;
+          white-space: normal;
         }
       }
     }
@@ -56,9 +67,11 @@ export default {
     }
     .markdown-preview {
       background: rgba(255, 255, 255, 0.1);
+      padding: 12px 8px !important;
       div {
         background: rgba(255, 255, 255, 0.1);
         color: $my-color2;
+        padding: 0 !important;
       }
     }
   }

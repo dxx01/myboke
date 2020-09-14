@@ -15,8 +15,16 @@
               item.name
             }}</router-link>
           </li>
-          <li>登录</li>
         </ul>
+        <div class="login-dropdown" @mouseover="isShow = true">
+          <div class="div-img" v-if="token">
+            <img :src="src" alt="" />
+          </div>
+          <p v-if="!token">登录</p>
+          <div class="my-dropdown" v-if="isShow" @mouseout="isShow = false">
+            <div class="list">发布</div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 小屏模式展示(<650px) -->
@@ -142,7 +150,8 @@ export default {
           path: "about"
         }
       ],
-      src: require("@/assets/user.jpg")
+      src: require("@/assets/user.jpg"),
+      isShow: false
     };
   },
   components: {},
@@ -150,6 +159,9 @@ export default {
     ...mapState("header", {
       active: state => state.active,
       iconShow: state => state.iconShow
+    }),
+    ...mapState({
+      token: state => state.token
     })
   },
 
@@ -213,6 +225,7 @@ export default {
     }
     .navlist {
       color: #777;
+      display: flex;
       .header_ul {
         padding: 0;
         margin: 0;
@@ -248,6 +261,52 @@ export default {
             color: #fff;
           }
           cursor: pointer;
+        }
+      }
+      .login-dropdown {
+        width: 80px;
+        text-align: center;
+        cursor: pointer;
+        p {
+          display: block;
+          width: 80px;
+          height: 60px;
+          text-align: center;
+          line-height: 60px;
+          color: #333;
+        }
+        p:hover {
+          background-color: #4ba4ff;
+          color: #fff;
+        }
+        .div-img {
+          width: 80px;
+          height: 60px;
+          text-align: center;
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+          }
+        }
+        .my-dropdown {
+          width: 100%;
+          right: 0px;
+          top: 60px;
+          text-align: center;
+          background-color: rgba(255, 255, 255, 0.5);
+          .list {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+          }
+          .list:hover {
+            background-color: #4ba4ff;
+            color: #fff;
+            cursor: pointer;
+          }
         }
       }
     }

@@ -39,7 +39,8 @@ h5,
 h6,
 ul,
 li,
-a {
+a,
+p {
   margin: 0;
   padding: 0;
 }

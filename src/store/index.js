@@ -7,11 +7,15 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
   state: {
-    active: true // 窗口大小，超过650?true:false
+    active: true, // 窗口大小，超过650?true:false
+    token: 132
   },
   mutations: {
     change(state, val) {
       state.active = val;
+    },
+    setToken(state, val) {
+      state.token = val;
     }
   },
   actions: {},
