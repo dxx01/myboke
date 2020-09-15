@@ -40,7 +40,7 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button @click="fabu('from')">发布</el-button>
+          <el-button @click="fabu('from')">提交</el-button>
         </el-form-item>
       </el-form>
     </div>
