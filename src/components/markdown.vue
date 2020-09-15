@@ -1,6 +1,6 @@
 <template>
   <div id="markdowndiv">
-    <Markdown initialValue="请编辑您的内容" @on-save="handleOnSave" />
+    <Markdown @on-save="handleOnSave" @on-copy="copy" :toolbars="toolbars" />
   </div>
 </template>
 
@@ -11,15 +11,27 @@ export default {
   name: "markdowndiv",
   data() {
     return {
-      value: ""
+      obj: "",
+      toolbars: {
+        h4: true,
+        h5: true,
+        h6: true,
+        //clear: true,
+        save: true
+      }
     };
   },
   components: {
     Markdown
   },
   methods: {
-    handleOnSave({ value, theme }) {
-      console.log(value, theme);
+    handleOnSave(obj) {
+      alert(obj);
+      console.log(obj);
+      this.obj = obj;
+    },
+    copy(text) {
+      console.log(text);
     }
   }
 };
@@ -35,6 +47,8 @@ export default {
     background: rgba(255, 255, 255, 0.1);
     .markdown-toolbars {
       background: rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      height: auto;
       li::after {
         background: #dcd5d580;
         color: $my-color2;
@@ -44,6 +58,7 @@ export default {
       background: rgba(255, 255, 255, 0.1);
     }
     .markdown-content {
+      padding-top: 0px;
       background: rgba(255, 255, 255, 0.1) !important;
       .markdown-editor {
         background: rgba(255, 255, 255, 0.1);
@@ -64,6 +79,7 @@ export default {
     }
     .markdown-editor {
       background: rgba(255, 255, 255, 0.1);
+      height: auto;
     }
     .markdown-preview {
       background: rgba(255, 255, 255, 0.1);
@@ -76,7 +92,7 @@ export default {
     }
   }
   .border {
-    border: none;
+    border: 1px solid #d9d9d9;
   }
 }
 </style>

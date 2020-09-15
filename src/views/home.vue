@@ -1,11 +1,11 @@
 <template>
   <div id="home">
-    <div
+    <!-- <div
       class="big"
       :style="
         'background:url(' + url + ') no-repeat;background-size: 100% 100%;'
       "
-    ></div>
+    ></div> -->
     <Header />
     <Notification />
     <Container />
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      url: require("../assets/imgs/big.jpg")
+      //url: require("../assets/imgs/big.jpg")
     };
   },
   created() {
@@ -92,14 +92,14 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
-  .big {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: 100% 100%;
-    z-index: -1;
-  }
+  // .big {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background-size: 100% 100%;
+  //   z-index: -1;
+  // }
 }
 </style>

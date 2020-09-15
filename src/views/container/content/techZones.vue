@@ -1,22 +1,20 @@
 <template>
   <div id="techZones" v-title data-title="技术专区">
     <Navigation />
-    <div class="left"><Markdown /></div>
+    <div class="left"></div>
     <div class="right"></div>
   </div>
 </template>
 
 <script>
 import Navigation from "@/components/navigation.vue"; //面包屑
-import Markdown from "@/components/markdown.vue";
 export default {
   name: "techZones",
   data() {
     return {};
   },
   components: {
-    Navigation,
-    Markdown
+    Navigation
   }
 };
 </script>

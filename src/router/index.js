@@ -50,6 +50,12 @@ const routes = [
         path: "about",
         name: "about",
         component: () => import("@/views/container/content/about.vue")
+      },
+      {
+        //发布
+        path: "fabu",
+        name: "fabu",
+        component: () => import("@/views/container/content/fabu.vue")
       }
     ]
   }

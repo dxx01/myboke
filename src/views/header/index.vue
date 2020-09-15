@@ -2,7 +2,7 @@
   <div id="headerMode">
     <!-- 大屏模式展示(>650px) -->
     <div class="nav">
-      <div class="logo">邓先生博客</div>
+      <div class="logo" @click="gohome">邓先生博客</div>
       <div class="navlist">
         <ul class="header_ul">
           <li
@@ -16,23 +16,45 @@
             }}</router-link>
           </li>
         </ul>
-        <div class="login-dropdown" @mouseover="isShow = true">
+        <div
+          class="login-dropdown"
+          @mouseover="isShow = true"
+          @mouseout="isShow = false"
+        >
           <div class="div-img" v-if="token">
             <img :src="src" alt="" />
           </div>
           <p v-if="!token">登录</p>
-          <div class="my-dropdown" v-if="isShow" @mouseout="isShow = false">
-            <div class="list">发布</div>
+          <div
+            class="my-dropdown"
+            v-if="token"
+            :style="isShow ? 'visibility:visible' : 'visibility:hidden'"
+          >
+            <div class="list" @click="fabu">发布</div>
+            <div class="list" @click="exit">退出</div>
           </div>
         </div>
       </div>
     </div>
     <!-- 小屏模式展示(<650px) -->
     <div class="mobile_nav">
-      <div class="userImg">
-        <img :src="src" alt="" />
+      <div
+        class="userImg"
+        @mouseover="isShow = true"
+        @mouseout="isShow = false"
+      >
+        <img v-if="token" :src="src" alt="" />
+        <p v-if="!token">登录</p>
+        <div
+          v-if="token"
+          class="imgList"
+          :style="isShow ? 'visibility:visible' : 'visibility:hidden'"
+        >
+          <div @click="fabu">发布</div>
+          <div @click="exit">退出</div>
+        </div>
       </div>
-      <div class="logo">邓先生博客</div>
+      <div class="logo" @click="gohome">邓先生博客</div>
       <div class="mobile_menu" @click="changeIcon(!iconShow)">
         <!-- 三 -->
         <svg
@@ -177,6 +199,10 @@ export default {
       defaultHeight: "defaultHeight",
       setIconShow: "setIconShow"
     }),
+    //返回首页
+    gohome() {
+      this.$router.push("/home/shouye");
+    },
     // 选择头部标签
     choose(path) {
       this.setActive(path);
@@ -188,6 +214,16 @@ export default {
     // 小屏模式下切换展开图标
     changeIcon(val) {
       this.setIconShow(val);
+    },
+    // 头像下拉框(发布)
+    fabu() {
+      this.isShow = false;
+      this.$router.push("/home/fabu");
+    },
+    // 头像下拉框(退出)
+    exit() {
+      this.isShow = false;
+      console.log("退出");
     }
   }
 };
@@ -198,7 +234,7 @@ export default {
   height: 60px;
   position: fixed;
   top: 0px;
-  z-index: 9999;
+  z-index: 9;
   background-color: rgba(255, 255, 255, 0.5);
   //margin-bottom: 20px;
   box-shadow: 0px 5px 20px 0px rgba(17, 58, 93, 0.2);
@@ -293,8 +329,6 @@ export default {
         }
         .my-dropdown {
           width: 100%;
-          right: 0px;
-          top: 60px;
           text-align: center;
           background-color: rgba(255, 255, 255, 0.5);
           .list {
@@ -320,13 +354,38 @@ export default {
       display: none;
     }
     .userImg {
-      width: 35px;
-      height: 35px;
-      margin: 12px 0 0 15px;
+      width: 80px;
+      height: 60px;
+      text-align: center;
+      position: relative;
       img {
-        width: 100%;
-        height: 100%;
+        width: 35px;
+        height: 35px;
+        margin-top: 12px;
         border-radius: 20px;
+      }
+      p {
+        line-height: 60px;
+        font-weight: 600;
+        cursor: pointer;
+        color: $my-color2;
+      }
+      .imgList {
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        div {
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          color: $my-color2;
+          background-color: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+        }
+        div:hover {
+          background-color: #4ba4ff;
+          color: #fff;
+        }
       }
     }
     .logo {

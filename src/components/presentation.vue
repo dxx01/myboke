@@ -93,6 +93,7 @@ export default {
     .list {
       p {
         font-size: 14px;
+        margin: 14px 0;
       }
     }
   }

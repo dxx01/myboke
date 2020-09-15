@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <div
+      class="big"
+      :style="
+        'background:url(' + url + ') no-repeat;background-size: 100% 100%;'
+      "
+    ></div>
     <router-view />
   </div>
 </template>
@@ -9,7 +15,7 @@ export default {
   name: "app",
   props: [""],
   data() {
-    return {};
+    return { url: require("@/assets/imgs/big.jpg") };
   },
 
   components: {},
@@ -27,9 +33,12 @@ export default {
 </script>
 
 <style lang="scss">
+html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
 }
 h1,
 h2,
@@ -62,5 +71,14 @@ li {
   padding: 0;
   margin: 0;
   min-width: 375px;
+  .big {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    z-index: -1;
+  }
 }
 </style>
