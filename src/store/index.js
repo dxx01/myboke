@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import header from "./modules/header";
 import defaultContent from "./defaultContent";
 import navigation from "./modules/navigation";
+import meditor from "./modules/meditor";
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
@@ -22,7 +23,8 @@ let store = new Vuex.Store({
   modules: {
     header,
     defaultContent,
-    navigation
+    navigation,
+    meditor
   }
 });
 export default store;

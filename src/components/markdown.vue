@@ -1,39 +1,26 @@
 <template>
   <div id="markdowndiv">
-    <Markdown @on-save="handleOnSave" @on-copy="copy" :toolbars="toolbars" />
+    <Markdown :value="html" style="height:100%;" :isPreview="true" />
   </div>
 </template>
 
 <script>
 import Markdown from "vue-meditor";
-
+import { mapState } from "vuex";
 export default {
   name: "markdowndiv",
   data() {
-    return {
-      obj: "",
-      toolbars: {
-        h4: true,
-        h5: true,
-        h6: true,
-        //clear: true,
-        save: true
-      }
-    };
+    return {};
   },
   components: {
     Markdown
   },
-  methods: {
-    handleOnSave(obj) {
-      alert(obj);
-      console.log(obj);
-      this.obj = obj;
-    },
-    copy(text) {
-      console.log(text);
-    }
-  }
+  computed: {
+    ...mapState("meditor", {
+      html: state => state.html
+    })
+  },
+  methods: {}
 };
 </script>
 

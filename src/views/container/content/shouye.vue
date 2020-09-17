@@ -1,6 +1,6 @@
 <template>
   <div id="shouye" v-title data-title="首页">
-    <div class="left">
+    <div class="left" id="sy-left">
       <!-- 轮播 -->
       <div class="sy_img">
         <el-carousel
@@ -32,14 +32,16 @@
       </div>
     </div>
     <div class="right">
-      <div class="right_div">
-        <Presentation> </Presentation>
-      </div>
-      <div class="right_div">
-        <Ranking />
-      </div>
-      <div class="right_div">
-        <TechnologyLabel />
+      <div id="divbox" :class="scrollTopShow ? 'sy-scrollTop' : ''">
+        <div class="right_div">
+          <Presentation> </Presentation>
+        </div>
+        <div class="right_div">
+          <Ranking />
+        </div>
+        <div class="right_div">
+          <TechnologyLabel />
+        </div>
       </div>
     </div>
   </div>
@@ -56,9 +58,11 @@ export default {
   name: "shouye",
   data() {
     return {
-      imgNum: 5
+      imgNum: 5,
+      scrollTopShow: true
     };
   },
+  mounted() {},
   components: {
     Artucle,
     Presentation,
@@ -118,15 +122,17 @@ export default {
   }
   .right {
     @include d-right;
-    .right_div {
-      border-radius: 4px;
-      width: 100%;
-      margin-bottom: 20px;
-      @media (max-width: 900px) {
-        width: calc(50% - 10px);
-      }
-      @media (max-width: 500px) {
+    #divbox {
+      .right_div {
+        border-radius: 4px;
         width: 100%;
+        margin-bottom: 20px;
+        @media (max-width: 900px) {
+          width: calc(50% - 10px);
+        }
+        @media (max-width: 500px) {
+          width: 100%;
+        }
       }
     }
   }

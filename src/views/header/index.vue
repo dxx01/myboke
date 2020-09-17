@@ -42,6 +42,7 @@
         class="userImg"
         @mouseover="isShow = true"
         @mouseout="isShow = false"
+        @click="changeIcon(true)"
       >
         <img v-if="token" :src="src" alt="" />
         <p v-if="!token">登录</p>
@@ -373,6 +374,7 @@ export default {
       .imgList {
         width: 100%;
         position: absolute;
+        z-index: 100;
         top: 60px;
         div {
           width: 100%;
