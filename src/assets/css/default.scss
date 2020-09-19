@@ -12,7 +12,6 @@
 
 @mixin d-left {
   width: calc(75% - 20px);
-  height: 100%;
   margin-right: 20px;
   position: relative;
   @media (max-width: 900px) {

@@ -2,13 +2,18 @@
   <div id="techZones" v-title data-title="技术专区">
     <Navigation />
     <div class="zj">
-      <div class="left"><Markdown /></div>
+      <div class="left">
+        <!-- <Markdown /> -->
+        <Artucle></Artucle>
+      </div>
       <div class="right">
-        <div class="right_div">
-          <Ranking />
-        </div>
-        <div class="right_div">
-          <TechnologyLabel />
+        <div class="rightbox">
+          <div class="right_div">
+            <Ranking />
+          </div>
+          <div class="right_div">
+            <TechnologyLabel />
+          </div>
         </div>
       </div>
     </div>
@@ -17,10 +22,9 @@
 
 <script>
 import Navigation from "@/components/navigation.vue"; //面包屑
-import Markdown from "@/components/markdown.vue"; //meditor
 import Ranking from "@/components/ranking.vue"; //排行模块
 import TechnologyLabel from "@/components/technology_lable.vue"; // 标签模块
-
+import Artucle from "@/components/artucle.vue"; //文章模块
 export default {
   name: "techZones",
   data() {
@@ -28,9 +32,9 @@ export default {
   },
   components: {
     Navigation,
-    Markdown,
     Ranking,
-    TechnologyLabel
+    TechnologyLabel,
+    Artucle
   }
 };
 </script>
@@ -45,22 +49,37 @@ export default {
   // align-content: flex-start; //设置换行没空隙
   height: 100%;
   .zj {
+    width: 100%;
     display: flex;
-    flex: 1;
+    flex-wrap: wrap;
     .left {
       @include d-left;
     }
     .right {
       @include d-right;
-      .right_div {
-        border-radius: 4px;
+      @media (max-width: 900px) {
+        margin-top: 0;
+      }
+      .rightbox {
         width: 100%;
-        margin-bottom: 20px;
-        @media (max-width: 900px) {
-          width: calc(50% - 10px);
-        }
-        @media (max-width: 500px) {
+        position: sticky; //滚动特殊定位
+        top: 80px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-content: flex-start; //设置换行没空隙
+        .right_div {
+          border-radius: 4px;
           width: 100%;
+          margin-bottom: 20px;
+
+          @media (max-width: 900px) {
+            width: calc(50% - 10px);
+            margin-top: 0;
+          }
+          @media (max-width: 500px) {
+            width: 100%;
+          }
         }
       }
     }
