@@ -1,3 +1,4 @@
+<!-- 技术标签模块 -->
 <template>
   <div id="technology_lable">
     <div class="lablediv">

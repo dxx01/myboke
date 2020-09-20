@@ -3,7 +3,7 @@
   <div id="article">
     <div class="article_box" v-for="(articles, index) in 4" :key="index">
       <div class="article_title">
-        <h2>java基础：类和对象</h2>
+        <h2 @click="toRead">java基础：类和对象</h2>
       </div>
       <div class="article_tags">
         <div class="article_tag" v-for="item in 4" :key="item">java</div>
@@ -34,7 +34,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "articlebox",
+  data() {
+    return {};
+  },
+  methods: {
+    toRead() {
+      let routes = this.$router.resolve({
+        path: "/home/read",
+        query: { id: 1 }
+      });
+      window.open(routes.href, "_blank");
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -56,6 +56,12 @@ const routes = [
         path: "fabu",
         name: "fabu",
         component: () => import("@/views/container/content/fabu.vue")
+      },
+      {
+        //阅读
+        path: "read/:tag?/:id?",
+        name: "read",
+        component: () => import("@/views/container/content/reading.vue")
       }
     ]
   }

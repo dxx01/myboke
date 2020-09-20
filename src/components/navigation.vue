@@ -1,3 +1,4 @@
+<!-- 面包屑 -->
 <template>
   <div id="navigation">
     <el-breadcrumb separator-class="el-icon-arrow-right" class="navigationdiv">
@@ -31,6 +32,7 @@ export default {
   },
   watch: {
     $route(newData) {
+      console.log(newData);
       this.setNavigationData(newData.path);
     }
   },
