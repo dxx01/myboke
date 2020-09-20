@@ -59,7 +59,7 @@ const routes = [
       },
       {
         //阅读
-        path: "read/:tag?/:id?",
+        path: "read",
         name: "read",
         component: () => import("@/views/container/content/reading.vue")
       }

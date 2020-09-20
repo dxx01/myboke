@@ -33,6 +33,9 @@ export default {
     Markdown,
     Ranking,
     TechnologyLabel
+  },
+  created() {
+    console.log(this.$route.params);
   }
 };
 </script>
