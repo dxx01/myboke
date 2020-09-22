@@ -7,12 +7,12 @@
       <div id="tagscloud">
         <a
           :style="'background:' + getColor()"
-          v-for="(item, index) in tagsData"
+          v-for="(item, index) in tagsData.data"
           :key="index"
           @mouseover="one(index, $event)"
           @mouseout="two(index, $event)"
-          @click="choose"
-          >{{ item }}</a
+          @click="choose(item.id)"
+          >{{ item.name }}</a
         >
       </div>
     </div>
@@ -20,27 +20,12 @@
 </template>
 
 <script>
-//import { update } from "@/util/tagscloud.js";
+import tagsData from "@/myjson/tags.json";
 export default {
   nmae: "technology_lable",
   data() {
     return {
-      tagsData: [
-        "java",
-        "mysql",
-        "redis",
-        "vue",
-        "html",
-        "js",
-        "redis",
-        "服务器",
-        "springboot",
-        "正则",
-        "css",
-        "vscode",
-        "idea",
-        "插件"
-      ],
+      tagsData: [],
       radius: 90,
       d: 200,
       dtr: Math.PI / 180,
@@ -63,7 +48,9 @@ export default {
       cc: null
     };
   },
-  created() {},
+  created() {
+    this.tagsData = tagsData;
+  },
   computed: {},
   mounted() {
     this.init();
@@ -225,8 +212,8 @@ export default {
         }
       });
     },
-    choose() {
-      this.$router.push("/home/techZones/tag");
+    choose(id) {
+      this.$router.push(`/home/techZones/${id}`);
     }
   },
   components: {}
