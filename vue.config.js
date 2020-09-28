@@ -4,6 +4,7 @@ module.exports = {
     port: 8880, // 启动端口
     host: "localhost",
     open: true, // 启动后是否自动打开网页
+    //代理解决跨域问题
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         target: process.env.VUE_APP_SERVICE_URL, //设置你调用的接口域名和端口号 别忘了加http
