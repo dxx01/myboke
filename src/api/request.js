@@ -2,13 +2,8 @@ import axios from "axios";
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: "",
-  timeout: 10000, // 请求超时时间10
-  //withCredentials: false, // 允许携带cookie
-  changeOrigin: true,
-  headers: {
-    "Content-Type": "application/json;charset=utf-8"
-  }
+  baseURL: process.env.VUE_APP_BASE_API,
+  timeout: 10000 // 请求超时时间10
 });
 
 // 添加请求拦截器

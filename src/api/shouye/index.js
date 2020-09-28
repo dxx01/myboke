@@ -1,4 +1,4 @@
-import request from "@/api/shouye/index.js";
+import request from "@/api/request.js";
 
 // 获取文章列表
 export function getArticle() {
