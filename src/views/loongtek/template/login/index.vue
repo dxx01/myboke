@@ -8,7 +8,7 @@
           @mouseout="showModel = false"
         >
           <div class="designerTitlebox">
-            <span>{{ titleModel }}设置</span
+            <span>{{ titleModel }}</span
             ><i class="el-icon-arrow-down el-icon--right"></i>
           </div>
           <div
@@ -19,9 +19,9 @@
               class="designerTitlelistbox"
               v-for="(item, index) in titleModelData"
               :key="index"
-              @click="choose(item.name)"
+              @click="choose(item.remark)"
             >
-              {{ item.name }}设置
+              {{ item.remark }}
             </div>
           </div>
         </div>
@@ -77,49 +77,87 @@
           </div>
         </div>
         <div class="bottomdiv">
+          <!-- one -->
           <ul class="shuxingshezhi" v-show="show">
             <li>
               <div class="lable">登录页背景颜色</div>
               <el-color-picker v-model="color"></el-color-picker>
             </li>
           </ul>
-          <ul class="jibenxinxi" v-show="!show">
+          <div class="input-box clearFix">
+            <div class="input-boxs">
+              <p><font color="red">*&nbsp;</font>模板名称</p>
+              <input
+                v-model="fromTwo.name"
+                v-verify="fromTwo.name"
+                placeholder="模板名称"
+              />
+              <label class="fl" v-remind="fromTwo.name"></label>
+            </div>
+            <div class="input-boxs">
+              <font> 模板名称</font>
+              <textarea placeholder="模板描述" v-model="fromTwo.remark" />
+            </div>
+            <div class="input-boxs">
+              <p><font color="red">*&nbsp;</font>排序号</p>
+              <input
+                v-model="fromTwo.num"
+                v-verify="fromTwo.num"
+                placeholder="排序号"
+              />
+              <label class="fl" v-remind="fromTwo.num"></label>
+            </div>
+            <div class="input-boxs">
+              <p>文件路径</p>
+              <input v-model="fromTwo.file" placeholder="文件路径" />
+            </div>
+            <div class="input-boxs">
+              <p>系统标题名称</p>
+              <input v-model="fromTwo.systemName" placeholder="系统标题名称" />
+            </div>
+            <div class="input-boxs2">
+              <el-checkbox v-model="fromTwo.default"></el-checkbox>&nbsp;
+              设为默认
+            </div>
+            <button v-on:click="submit">提交</button>
+          </div>
+          <!-- two -->
+          <!-- <ul class="jibenxinxi" v-show="!show">
             <li>
               <p><font color="red">*&nbsp;</font>模板名称</p>
-              <input />
+              <input v-model="fromTwo.name" />
               <font
-                :style="'visibility:' + (true ? 'visible' : 'hidden')"
+                :style="'visibility:' + (role.name ? 'visible' : 'hidden')"
                 color="red"
                 size="2"
-                >&nbsp;</font
+                class="kongge"
+                >不能为空</font
               >
             </li>
             <li>
               <p>模板描述</p>
               <textarea />
+              <font color="red" size="2" class="kongge"></font>
             </li>
             <li>
               <p><font color="red">*&nbsp;</font>排序号</p>
               <input />
-              <font
-                :style="'visibility:' + (false ? 'visible' : 'hidden')"
-                color="red"
-                size="2"
-                >123</font
+              <font color="red" size="2" class="kongge"
+                >不能为空，且只能是数字</font
               >
             </li>
             <li>
               <p>文件路径</p>
-              <input value="default/login.vue" disabled />
-              <font color="red" size="2">&nbsp;</font>
+              <input name="file" value="default/login.vue" disabled />
+              <font color="red" size="2" class="kongge"></font>
             </li>
             <li>
               <p>系统标题名称</p>
               <input />
-              <font color="red" size="2">&nbsp;</font>
+              <font color="red" size="2" class="kongge"></font>
             </li>
             <li><el-checkbox v-model="checked"></el-checkbox>&nbsp;设为默认</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>
@@ -142,22 +180,61 @@ export default {
       color: "white",
       listModel: [
         {
-          name: "登录页设置"
+          remark: "登录页设置"
         },
         {
-          name: "首页设置"
+          remark: "首页设置"
         }
       ],
       titleModelData: null,
       showModel: false,
-      titleModel: "登录页"
+      titleModel: "登录页设置",
+      // 基本信息
+      fromTwo: {
+        name: "登录页模板一",
+        remark: "登录页模板描述",
+        num: "1",
+        file: "default/login.vue",
+        systemName: "系统标题名称",
+        default: true
+      }
     };
+  },
+  verify: {
+    fromTwo: {
+      name: "required",
+      num: [
+        {
+          test(val) {
+            if (val === "") {
+              return false;
+            }
+            return true;
+          },
+          message: "不能为空"
+        },
+        {
+          test(val) {
+            if (!/^[1-9]\d*$/.test(val)) {
+              return false;
+            }
+            return true;
+          },
+          message: "必须为正整数"
+        }
+      ]
+    }
   },
   created() {
     this.getTitleModelJs();
   },
+  computed: {},
+  watch: {},
   mounted() {},
   methods: {
+    submit: function() {
+      console.log(this.$verify.check());
+    },
     choose(item) {
       this.titleModel = item;
       this.showModel = false;
@@ -165,7 +242,6 @@ export default {
     getTitleModelJs() {
       getTitleModel()
         .then(res => {
-          console.log(123);
           if (res.data.resp_code === 0) this.titleModelData = res.data.datas;
           else this.titleModelData = this.listModel;
         })
@@ -343,6 +419,58 @@ p {
       }
       .bottomdiv {
         flex: 1;
+        .input-box {
+          padding: 18px;
+          .input-boxs2 {
+            display: flex;
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 20px;
+          }
+          .input-boxs {
+            display: flex;
+            color: #666;
+            font-size: 12px;
+            flex-direction: column;
+            min-height: 70px;
+            .fl {
+              color: red;
+            }
+            .errorRed {
+              border: 1px solid red;
+            }
+            input {
+              border: 1px solid #d4d4d4;
+              outline: medium; //去除浏览器输入框样式
+              height: 28px;
+              margin-top: 5px;
+              width: calc(100% - 2px);
+              padding: 0;
+            }
+            input::-webkit-input-placeholder {
+              color: #666;
+            }
+            textarea {
+              width: 100%;
+              resize: none;
+              border: 1px solid #d4d4d4;
+              outline: medium; //去除浏览器输入框样式
+              height: 80px;
+            }
+            input:focus {
+              border: 1px solid #318ed9;
+            }
+            input:hover {
+              border: 1px solid #318ed9;
+            }
+            textarea:focus {
+              border: 1px solid #318ed9;
+            }
+            textarea:hover {
+              border: 1px solid #318ed9;
+            }
+          }
+        }
         .shuxingshezhi {
           padding: 8px;
           li {
@@ -366,6 +494,9 @@ p {
             p {
               color: #666;
               font-size: 12px;
+            }
+            .kongge::before {
+              content: "\00A0";
             }
             input {
               border: 1px solid #d4d4d4;

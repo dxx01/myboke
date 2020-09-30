@@ -5,14 +5,13 @@ import store from "./store";
 import ElementUI from "element-ui";
 import Router from "vue-router";
 import "element-ui/lib/theme-chalk/index.css";
-
-// https://github.com/hinesboy/mavonEditor/blob/master/README.md
-// import mavonEditor from "mavon-editor";
-// import "mavon-editor/dist/css/index.css";
+import verify from "vue-verify-plugin"; //表单验证插件
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
-// Vue.use(mavonEditor);
+Vue.use(verify, {
+  blur: true
+});
 
 //全局指令
 Vue.directive("title", {

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: "/dev-api",
   timeout: 10000 // 请求超时时间10
 });
 
