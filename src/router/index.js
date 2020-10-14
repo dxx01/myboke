@@ -64,20 +64,6 @@ const routes = [
         component: () => import("@/views/container/content/reading.vue")
       }
     ]
-  },
-  {
-    //龙科模块
-    path: "/loongtek",
-    name: "loongtek",
-    component: () => import("@/views/loongtek/template/index.vue"),
-    children: [
-      {
-        //登录
-        path: "l_login",
-        name: "l_login",
-        component: () => import("@/views/loongtek/template/login/index.vue")
-      }
-    ]
   }
 ];
 
