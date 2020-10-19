@@ -24,7 +24,7 @@
           <div class="div-img" v-if="token">
             <img :src="src" alt="" />
           </div>
-          <p v-if="!token">登录</p>
+          <p v-if="!token" @click="login">登录</p>
           <div
             class="my-dropdown"
             v-if="token"
@@ -45,7 +45,7 @@
         @click="changeIcon(true)"
       >
         <img v-if="token" :src="src" alt="" />
-        <p v-if="!token">登录</p>
+        <p v-if="!token" @click="login">登录</p>
         <div
           v-if="token"
           class="imgList"
@@ -136,16 +136,37 @@
         </div>
       </transition>
     </div>
+    <!-- 弹窗 -->
+    <el-dialog
+      title="登录"
+      :visible.sync="DialogVisible"
+      :modal-append-to-body="false"
+      :show-close="false"
+      width="30%"
+      custom-class="login-dialog"
+      center
+    >
+      <Login />
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="DialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="DialogVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import Login from "@/views/login/login.vue";
 export default {
   name: "headerMode",
   props: [""],
   data() {
     return {
+      //弹窗
+      DialogVisible: false,
       // header部分数据
       navData: [
         {
@@ -177,14 +198,17 @@ export default {
       isShow: false
     };
   },
-  components: {},
+  components: {
+    Login
+  },
   computed: {
     ...mapState("header", {
       active: state => state.active,
       iconShow: state => state.iconShow
     }),
     ...mapState({
-      token: state => state.token
+      token: state => state.token,
+      active: state => state.active
     })
   },
 
@@ -215,6 +239,15 @@ export default {
     // 小屏模式下切换展开图标
     changeIcon(val) {
       this.setIconShow(val);
+    },
+    //登录
+    login() {
+      if (this.active) {
+        this.DialogVisible = true;
+        console.log("大屏");
+      } else {
+        console.log("小屏");
+      }
     },
     // 头像下拉框(发布)
     fabu() {
