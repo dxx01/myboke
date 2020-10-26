@@ -138,28 +138,21 @@
     </div>
     <!-- 弹窗 -->
     <el-dialog
-      title="登录"
       :visible.sync="DialogVisible"
       :modal-append-to-body="false"
       :show-close="false"
-      width="30%"
+      width="25%"
       custom-class="login-dialog"
       center
     >
-      <Login />
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="DialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="DialogVisible = false"
-          >确 定</el-button
-        >
-      </span>
+      <LoginHome />
     </el-dialog>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import Login from "@/views/login/login.vue";
+import LoginHome from "@/views/login/index.vue";
 export default {
   name: "headerMode",
   props: [""],
@@ -199,7 +192,7 @@ export default {
     };
   },
   components: {
-    Login
+    LoginHome
   },
   computed: {
     ...mapState("header", {
@@ -246,6 +239,7 @@ export default {
         this.DialogVisible = true;
         console.log("大屏");
       } else {
+        this.$router.push("/home/login");
         console.log("小屏");
       }
     },
@@ -502,6 +496,16 @@ export default {
         }
       }
     }
+  }
+}
+</style>
+<style lang="scss">
+.login-dialog {
+  .el-dialog__body {
+    padding: 0 !important;
+  }
+  .el-dialog__header {
+    padding: 0;
   }
 }
 </style>

@@ -4,6 +4,7 @@ import header from "./modules/header";
 import defaultContent from "./defaultContent";
 import navigation from "./modules/navigation";
 import meditor from "./modules/meditor";
+import login from "./modules/login.js";
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
@@ -24,7 +25,8 @@ let store = new Vuex.Store({
     header,
     defaultContent,
     navigation,
-    meditor
+    meditor,
+    login
   }
 });
 export default store;

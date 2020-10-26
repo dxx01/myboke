@@ -62,6 +62,12 @@ const routes = [
         path: "read",
         name: "read",
         component: () => import("@/views/container/content/reading.vue")
+      },
+      {
+        // 登录注册忘记密码
+        path: "login",
+        name: "login",
+        component: () => import("@/views/login/index.vue")
       }
     ]
   }

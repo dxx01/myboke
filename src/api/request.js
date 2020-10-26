@@ -3,7 +3,7 @@ import axios from "axios";
 // 创建axios实例
 const service = axios.create({
   baseURL: "/dev-api",
-  timeout: 10000 // 请求超时时间10
+  timeout: 30000 // 请求超时时间10
 });
 
 // 添加请求拦截器
@@ -22,7 +22,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   function(response) {
     // 对响应数据做点什么
-    return response;
+    return response.data;
   },
   function(error) {
     // 对响应错误做点什么
