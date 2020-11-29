@@ -43,7 +43,6 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 //校验文件
-import regular from "@/tool/regular.js";
 import { Api_login } from "@/api/login/index.js";
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -56,7 +55,7 @@ export default {
         password: ""
       },
       rules: {
-        phone: [{ validator: regular.validatePhone, trigger: "blur" }],
+        phone: [{ required: true, message: "密码不能为空", trigger: "blur" }],
         password: [{ required: true, message: "密码不能为空", trigger: "blur" }]
       }
     };
@@ -70,7 +69,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          Api_login().then(res => {
+          Api_login(this.loginForm).then(res => {
             console.log(res);
           });
         } else {

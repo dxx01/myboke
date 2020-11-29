@@ -10,9 +10,10 @@ export function Api_register(data) {
 }
 
 // 登录
-export function Api_login() {
+export function Api_login(data) {
   return request({
-    url: "/home",
-    method: "get"
+    url: "/login",
+    method: "post",
+    data: data
   });
 }
