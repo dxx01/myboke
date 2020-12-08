@@ -138,9 +138,10 @@
     </div>
     <!-- 弹窗 -->
     <el-dialog
-      :visible.sync="DialogVisible"
+      :visible="login_DialogVisible"
       :modal-append-to-body="false"
       :show-close="false"
+      @close="closeDialog"
       width="25%"
       custom-class="login-dialog"
       center
@@ -151,15 +152,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import LoginHome from "@/views/login/index.vue";
 export default {
   name: "headerMode",
   props: [""],
   data() {
     return {
-      //弹窗
-      DialogVisible: false,
       // header部分数据
       navData: [
         {
@@ -197,7 +196,8 @@ export default {
   computed: {
     ...mapState("header", {
       active: state => state.active,
-      iconShow: state => state.iconShow
+      iconShow: state => state.iconShow,
+      login_DialogVisible: state => state.login_DialogVisible
     }),
     ...mapState({
       token: state => state.token,
@@ -214,8 +214,10 @@ export default {
   methods: {
     ...mapMutations("header", {
       setActive: "setActive",
-      defaultHeight: "defaultHeight",
       setIconShow: "setIconShow"
+    }),
+    ...mapActions("header", {
+      setLogin_DialogVisible: "setLogin_DialogVisible"
     }),
     //返回首页
     gohome() {
@@ -236,11 +238,9 @@ export default {
     //登录
     login() {
       if (this.active) {
-        this.DialogVisible = true;
-        console.log("大屏");
+        this.setLogin_DialogVisible(true);
       } else {
         this.$router.push("/home/login");
-        console.log("小屏");
       }
     },
     // 头像下拉框(发布)
@@ -252,6 +252,10 @@ export default {
     exit() {
       this.isShow = false;
       console.log("退出");
+    },
+    //dialog关闭前
+    closeDialog() {
+      this.setLogin_DialogVisible(false);
     }
   }
 };

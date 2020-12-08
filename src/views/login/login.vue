@@ -43,7 +43,9 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 //校验文件
+import qs from "qs";
 import { Api_login } from "@/api/login/index.js";
+import { mapState, mapMutations } from "vuex";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -61,19 +63,41 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    ...mapState({
+      token: state => state.token,
+      active: state => state.active
+    })
+  },
   //监控data中的数据变化
   watch: {},
   //方法集合
   methods: {
+    ...mapMutations("header", {
+      setLogin_DialogVisible: "setLogin_DialogVisible"
+    }),
+    ...mapMutations({
+      setToken: "setToken"
+    }),
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          Api_login(this.loginForm).then(res => {
-            console.log(res);
+          Api_login(qs.stringify(this.loginForm)).then(res => {
+            if (res.code === "200") {
+              console.log(res);
+              if (this.active) {
+                this.setLogin_DialogVisible(false);
+              } else {
+                this.$router.push({ name: "home" });
+              }
+            } else {
+              console.log(res);
+              this.$message.error(res.msg);
+            }
           });
+          // 移除表单内容
+          //this.$refs["loginForm"].resetFields();
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
