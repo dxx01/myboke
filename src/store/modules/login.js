@@ -1,11 +1,16 @@
 export default {
   namespaced: true,
   state: {
-    comName: "Login"
+    // 登录、注册页面切换默认登录
+    comName: "Login",
+    phone: null
   },
   mutations: {
     setComName(state, val) {
       state.comName = val;
+    },
+    setPhone(state, val) {
+      state.phone = val;
     }
   },
   actions: {},

@@ -84,7 +84,11 @@ export default {
         if (valid) {
           Api_login(qs.stringify(this.loginForm)).then(res => {
             if (res.code === "200") {
-              console.log(res);
+              this.setToken(res.data);
+              //获取荷载值
+              var jwt = require("jsonwebtoken");
+              let obj = jwt.decode(res.data);
+              this.$store.commit("login/setPhone", obj.sub);
               if (this.active) {
                 this.setLogin_DialogVisible(false);
               } else {

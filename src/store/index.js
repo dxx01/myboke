@@ -10,7 +10,7 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
   state: {
     active: true, // 窗口大小，超过650?true:false
-    token: null
+    token: localStorage.getItem("token") ? localStorage.getItem("token") : ""
   },
   mutations: {
     change(state, val) {
@@ -18,6 +18,12 @@ let store = new Vuex.Store({
     },
     setToken(state, val) {
       state.token = val;
+      //存入localStorage
+      localStorage.setItem("token", val);
+    },
+    removeToken(state) {
+      state.token = "";
+      localStorage.removeItem("token");
     }
   },
   actions: {},

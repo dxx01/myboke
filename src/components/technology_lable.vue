@@ -7,7 +7,7 @@
       <div id="tagscloud">
         <a
           :style="'background:' + getColor()"
-          v-for="(item, index) in tagsData.data"
+          v-for="(item, index) in tagsData"
           :key="index"
           @mouseover="one(index, $event)"
           @mouseout="two(index, $event)"
@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import tagsData from "@/myjson/tags.json";
+import { Api_getAll } from "@/api/technologyLabel.js";
+import tagsDataJson from "@/myjson/tags.json";
 export default {
   nmae: "technology_lable",
   data() {
@@ -48,17 +49,29 @@ export default {
       cc: null
     };
   },
+  watch: {
+    tagsData() {
+      this.$nextTick(() => {
+        this.init();
+      });
+    }
+  },
   created() {
-    this.tagsData = tagsData;
+    this.getAll();
   },
   computed: {},
   mounted() {
-    this.init();
-    this.sineCosine(0, 0, 0);
-    this.positionAll();
     setInterval(this.update, 40);
   },
   methods: {
+    async getAll() {
+      const res = await Api_getAll();
+      if (res.code == 200) {
+        this.tagsData = res.data;
+      } else {
+        this.tagsData = tagsDataJson.data;
+      }
+    },
     getColor() {
       let str = null;
       this.r = Math.floor(Math.random() * 255);
@@ -77,6 +90,8 @@ export default {
         oTag.offsetHeight = this.aA[i].offsetHeight;
         this.mcList.push(oTag);
       }
+      this.sineCosine(0, 0, 0);
+      this.positionAll();
     },
     update() {
       var a,

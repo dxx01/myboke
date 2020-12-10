@@ -216,6 +216,9 @@ export default {
       setActive: "setActive",
       setIconShow: "setIconShow"
     }),
+    ...mapMutations({
+      removeToken: "removeToken"
+    }),
     ...mapActions("header", {
       setLogin_DialogVisible: "setLogin_DialogVisible"
     }),
@@ -251,6 +254,7 @@ export default {
     // 头像下拉框(退出)
     exit() {
       this.isShow = false;
+      this.removeToken();
       console.log("退出");
     },
     //dialog关闭前
