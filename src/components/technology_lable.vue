@@ -21,7 +21,7 @@
 
 <script>
 import { Api_getAll } from "@/api/technologyLabel.js";
-import tagsDataJson from "@/myjson/tags.json";
+
 export default {
   nmae: "technology_lable",
   data() {
@@ -68,8 +68,6 @@ export default {
       const res = await Api_getAll();
       if (res.code == 200) {
         this.tagsData = res.data;
-      } else {
-        this.tagsData = tagsDataJson.data;
       }
     },
     getColor() {

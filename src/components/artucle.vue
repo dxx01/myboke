@@ -41,9 +41,6 @@ export default {
   },
   methods: {
     toRead() {
-      // let routes = this.$router.resolve({
-      //   path: "/home/techZones/" + 1 + "/" + 2
-      // });
       let routes = this.$router.resolve({
         name: "techZones",
         params: {

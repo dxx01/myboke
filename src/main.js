@@ -13,6 +13,9 @@ Vue.use(verify, {
   blur: true
 });
 
+// 引入mock
+//require("@/mock/mock.js");
+
 //全局指令
 Vue.directive("title", {
   inserted: function(el) {
