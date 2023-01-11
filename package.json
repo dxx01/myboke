@@ -13,7 +13,7 @@
     "element-ui": "^2.13.2",
     "gsap": "^3.4.2",
     "jquery": "^3.5.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-meditor": "^2.1.1",
